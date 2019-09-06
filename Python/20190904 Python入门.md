@@ -1,0 +1,2615 @@
+## python 入门 ##
+
+### python 基础知识 ###
+
+#### python 解释器 ####
+
+python 程序的执行依赖于 python 解释器。常用的 Python 解释器有： Cpython
+
+#### Python 下载 ####
+
+Python 官网： www.python.org
+
+python 版本有 python2.x 和 python3.x 二种，现在以 python 3.x 为主
+
+python 2.x 现在已经被淘汰，并且 python 3.x 版本不兼容 python 2.x 程序。
+
+
+
+#### Python 开发环境 ####
+
+开发环境，英文 IDE（Integrated Development Environment  集成开发环境）
+
+常用的开发环境： IDLE、Python
+
+### IDLE 使用 ###
+
+#### 建立 python 源文件 ####
+
+ 第一个 python 源程序
+
+```python
+# 第一个 python 程序
+
+for i  in range(5):
+    print("Hello World !!!")
+```
+
+### 程序基本格式 ###
+
+1. **空格，缩进问题**
+
+   行首空白表示逻辑行的缩进层次结构。
+
+   通常一个 Tab 键，表示四个空格
+
+2. **python 区分大小写**
+
+3. **注释**
+
+   1. 行注释  # 
+   2. 段注释  ''' 注释内容 ’‘’  
+
+### GUI 设计 ###
+
+```python
+import turtle as t
+
+t.speed(10)  #范围  (0,10] 取整数，数越大，画的越快
+t.showturtle()  #显示箭头
+t.penup() 
+t.goto(-200,-200)
+t.pendown();
+t.color("red")
+t.forward(300)
+t.left(90)
+t.forward(400)
+for i in range(1000):
+    t.circle(100)
+    t.forward(-5)
+```
+
+奥运五环
+
+```python
+import turtle as t
+'''
+    奥运五环
+'''
+t.speed(10) #画笔速度
+t.width(16) # 画笔粗细度 px 
+
+def moveUpDown(x,y,color):
+    t.color(color) #画笔颜色
+    t.penup()      #拿起
+    t.goto(x,y)    #移动位置
+    t.pendown()    #放下
+    t.circle(60)   #画圆
+
+#第一个圆
+moveUpDown(-150,0,"blue")
+
+#第二个圆
+moveUpDown(-50,0,"black")
+
+#第三个圆
+moveUpDown(50,0,"red")
+
+#第四个圆
+moveUpDown(-100,-50,"yellow")
+
+#第五个圆
+moveUpDown(0,-50,"green")
+```
+
+效果
+
+![](http://img.zwer.xyz/blog/20190903210651.png)
+
+## Python 程序设计 ##
+
+### 对象 ###
+
+Python 中，一切皆对象。每个对象由：标识（identity）、类型（type）、值（value）组成
+
+- id(obj)   获取内存地址信息
+- type(obj)  获取所属对象类型
+- print(obj) 获取对象的值
+
+**对象的本质就是：一个内存块，拥有特定的值，支持特定类型的相关操作**
+
+![](http://img.zwer.xyz/blog/20190903213924.png)
+
+### 引用： ###
+
+在 Python 中，变量也成为：对象的引用。因为，**变量存储的就是对象的地址**
+
+变量通过地址引用了 “对象”
+
+变量位于：栈内存
+
+对象位于：堆内存
+
+- Python 是动态类型语言
+
+  变量不需要显式声明类型。根据变量引用的对象，Python 解释器自动确定数据类型
+
+- Python 是强类型语言
+
+  每个对象都有数据类型，只支持该类型支持的操作
+
+
+
+### 标识符： ###
+
+> 用于变量、函数、类、模块等的名称。
+
+注意：标识符区分大小写，且必须以字母开头
+
+##### 命名规则： #####
+
+![](http://img.zwer.xyz/blog/20190903215329.png)
+
+
+
+#### 变量的声明和赋值 ####
+
+变量的声明和赋值用于将一个变量绑定到一个对象上。格式如下：
+
+```
+变量名 = 表达式
+```
+
+注意：变量在使用前必须先被初始化（先被赋值）
+
+#### 链式赋值 ####
+
+> 用户同一个对象赋值给多个变量
+
+```python
+x=y=123 # 相当于 x=123,y=123
+```
+
+#### 系列解包赋值 ####
+
+系列数据赋值给对应**相同个数的变量**（个数必须保持一致）
+
+```python
+a,b,c=4,5,6 # 相当于 a=4,b=5,c=6
+```
+
+应用栗子:**变量互换**
+
+```python
+a,b=1,2
+a,b=b,a
+print(a,b) 
+```
+
+#### 内置数据类型 ####
+
+1. 整型
+
+   `0b` 开头表示二进制
+
+   `0o` 开头表示八进制
+
+   `ox` 开头表示十六进制
+
+2. 浮点型
+
+   3.14 ==》 表示 `314E-2`
+
+3. 布尔型  True False     and（与）  or(或） not (非)
+
+4. 字符串型 
+
+注意：
+
+- 自动转型：整数和浮点数混合运算时，表达式结果自动转型成浮点数。
+- `int` 类型的范围无限制，取消了`long `类型，适合做科学计算 
+
+| 运算符 | 说明       |
+| ------ | ---------- |
+| /      | 浮点数除法 |
+| //     | 整数除法   |
+| **     | 幂         |
+
+```python
+divmod(被除数,除数)
+```
+
+```python
+int(浮点型数字)  #实现类型转换
+float(value)
+round(value) #四舍五入
+```
+
+#### 时间 ####
+
+```python
+import time as  t
+
+'''
+    熟悉时间模块
+'''
+
+if __name__ == '__main__':
+    seconds = t.time()
+    minutues = seconds//60
+    hours = minutues//60
+    days = hours//24
+    years = days//360
+    print("years:"+str(int(years)))
+    print("----------------------")
+
+    local = t.localtime(t.time())
+    print(t.strftime('%Y-%m-%d %H-%M-%S',local))
+    
+```
+
+小练习
+
+```python
+import turtle as t
+import math as m
+
+'''
+	画图，计算首尾之间的距离
+'''
+
+#主函数
+if __name__ == '__main__':
+    #定义坐标位置
+    x1,y1=200,200
+    x2,y2=200,-200
+    x3,y3=-200,-200
+    x4,y4=-200,200
+
+    #画图
+    t.penup()
+    t.goto(x1,y1)
+    t.pendown()
+    t.goto(x2,y2)
+    t.goto(x3,y3)
+    t.goto(x4,y4)
+    
+    #计算 (x1,y1)与(x4,y4)之间的距离
+    distance = m.sqrt((x4-x1)**2+(y4-y1)**2)
+    print("(x1,y1)与(x4,y4)之间的距离:"+str(distance))
+    t.write(str(distance))
+
+```
+
+### 同一运算符 ###
+
+用于比较两个对象的存储单元，实际比较的是对象的地址
+
+`is ` 用于判断两个变量引用对象是否为同一个，即比较对象的地址
+
+== 用于判断引用变量引用的值是否相等，默认调用 `__eq__ `方法
+
+##### 整数缓存问题 #####
+
+即在命令模式下，缓存的整数范围 [-5,256]
+
+但是在文件中，由于解释器做了部分优化，缓存整数的范围是 [-5,任意整数]
+
+```python
+'''
+    整数缓存问题
+'''
+
+if __name__ == '__main__':
+    a = -6
+    b = -6
+    print(a is b) #False
+    a = 5
+    b = 5
+    print(a is b) #True
+    a = 10000000
+    b = 10000000
+    print(a is b) #True
+
+```
+
+### 字符串 ###
+
+字符序列，**字符串属于不可变对象**，不支持原地修改
+
+获取字符串的字串：
+
+- 从左到右，以 0 下标索引开始 
+
+-  从右到左，以-1 下标索引开始
+
+#### 字符串编码 ####
+
+PYthon3支持 Unicode，默认就是 16位 Unicode 编码，ASCII 码是 Unicode 的子集
+
+#### 空字符串和 len() 函数 ####
+
+```python
+c = ""
+len(c)
+```
+
+Just test it  
+
+```python
+>>> a = "I'm zwz"
+>>> a
+"I'm zwz"
+>>> a =  'My name is  "zwz"'
+>>> a
+'My name is  "zwz"'
+>>> a = """"resume：name="zwz" age="22"  """
+>>> a
+'"resume：name="zwz" age="22"  '
+```
+
+#### 转义字符 ####
+
+| 转义字符 | 描述     |
+| -------- | -------- |
+| \        | 续行符   |
+| `\\`     | 反斜杠符 |
+| \b       | 退格     |
+| \r       | 回车     |
+| `\'`     | 单引号   |
+| `\"`     | 双引号   |
+
+#### 字符串拼接 ####
+
+注意：+ 两边类型需保持一致
+
+```python
+>>>'ab' 'bc'
+>>>'abbc'
+```
+
+#### 不换行打印 ####
+
+```python
+print(obj,end="\t")
+```
+
+#### 从控制台读取字符串 ####
+
+```python
+t = input("请输入")
+```
+
+#### str()  实现数字转型字符串 ####
+
+```
+str("5.20")
+```
+
+#### 字符串切片 slice 操作 ####
+
+**格式**
+
+```
+[起始偏移量 start : 终止偏移量 end : 步长 step]
+```
+
+注意：**包头部包尾**
+
+| 切片               | 说明                           |
+| ------------------ | ------------------------------ |
+| [:]                | 全部复制                       |
+| [start:]           | 从 start 到 结尾               |
+| [:end]             | 从 0 到 end -1                 |
+| [start:end]        | 从 start 到 end - 1            |
+| `[start:end:step]` | 从 start 到 end -1，步长为temp |
+| [::-1]             | 倒序                           |
+
+#### split() 分割 ####
+
+默认使用空白字符作为分割符
+
+```python
+>>> a = "I'm a  workder"
+>>> a.split()
+["I'm", 'a', 'workder']
+>>> a.split('m')
+["I'", ' a  workder']
+```
+
+#### join()  连接 ####
+
+```python
+>>> t = a.split('m')
+>>> t
+["I'", ' a  workder']
+>>> l = "".join(t)
+>>> l
+"I' a  workder"
+```
+
+join() 与 + 字符串拼接效率比较
+
+```python
+import time as t
+
+if __name__ == '__main__':
+
+    #开始计时
+    start = t.time()
+    s = ""
+    for _ in range(1000000):
+        s += "zwz"
+    #结束计时
+    end = t.time()
+    #计算时间
+    print("所花费的时间:"+str(end-start)+" s")
+
+     #开始计时
+    start = t.time()
+    l = []
+    for _ in range(1000000):
+        l.append("zwz")
+    "".join(l)
+    #结束计时
+    end = t.time()
+    #计算时间
+    print("所花费的时间:"+str(end-start)+" s")
+```
+
+#### 字符串驻留机制和字符串比较 ####
+
+字符串驻留：仅保存一份相同且不可变字符串的方法，不同的值被存放
+
+##### 成员操作符 #####
+
+in /not in 关键字，判断某个字符（子字符串）是否存在该字符串中
+
+#### 字符串常用方法 ####
+
+| 方法                            | 说明                                                         |
+| ------------------------------- | ------------------------------------------------------------ |
+| len(str)                        | 字符串长度                                                   |
+| startswith(str)                 | 以指定字符串开头                                             |
+| endswith(str)                   | 以指定字符串结尾                                             |
+| find (str)                      | 第一次出现指定字符串的位置                                   |
+| rfind(str)                      | 最后一次出现指定字符串的位置                                 |
+| count(str)                      | 统计指定字符串出现的次数                                     |
+| strip()<br/>lstrip()<br/>rstrip | 去除字符串首尾指定字符串<br/>去掉字符串中首部指定字符串<br/>去掉字符串中尾部指定字符串 |
+| capitalize()                    | 首字母大写                                                   |
+| title()                         | 每个单词首字母大写                                           |
+| upper()                         | 小写变大写                                                   |
+| lower()                         | 大写变小写                                                   |
+| swapcase()                      | 大写变小写，小写变大写                                       |
+| isalnum(str)                    | 判断所有字符全是字母或数字,真返回 True，假返回 False         |
+| isalpha()                       | 检测字符串是否只由字母组成（含汉字）                         |
+| isdigit()                       | 检测字符串是否只由数字组成                                   |
+| isspace()                       | 检测是否为空白符                                             |
+| isupper()                       | 是否为大写字母                                               |
+| islower()                       | 是否为小写字母                                               |
+
+#### 字符串格式化 ####
+
+格式：`str.format()`，根据 {下标 }/{ 参数名}传值
+
+```python
+>>> "I'is {0} ,My age is  = {1}".format("zwz",22)
+"I'is zwz ,My age is  = 22"
+>>> "I' is {name},My age is = {age}".format(name="zwz",age=22)
+"I' is zwz,My age is = 22"
+>>> "I' is {name},My age is = {age}".format(age=22,name="zwz")
+"I' is zwz,My age is = 22"
+```
+
+##### 填充与对齐 #####
+
+^  居中 > 左对齐 > 右对齐
+
+```python
+>>> "I like num,eg:{0:*>6}".format("123")
+'I like num,eg:***123'
+>>> "I like num,eg:{0:*<6}".format("123")
+'I like num,eg:123***'
+>>> "I like num,eg:{0:*^6}".format("123")
+'I like num,eg:*123**'
+```
+
+##### 数字格式化 #####
+
+```python 
+>>> "num is {:.2f}".format(123.123)
+'num is 123.12'
+>>> "num is {0:.2f}".format(123.123)
+'num is 123.12'
+```
+
+![](http://img.zwer.xyz/blog/20190904141941.png)
+
+
+
+#### StringIO  ####
+
+```python
+>>> import io
+>>> s = "zwer in gitee"
+>>> obj = io.StringIO(s)
+>>> obj
+<_io.StringIO object at 0x03ADFE40>
+>>> obj.getvalue()
+'zwer in gitee'
+>>> obj.seek(4)
+4
+>>> obj.write('ros')
+3
+>>> obj.getvalue()
+'zwerros gitee'
+```
+
+#### 基本运算符 ####
+
+![](http://img.zwer.xyz/blog/20190904142048.png)
+
+### 序列 ###
+
+#### 列表 ####
+
+>  用于存储任意数目、任意类型的数据集合
+
+```python
+a = [10,20,30]
+```
+
+注意：列表存储是对象的引用，即引用对象的内存地址，并且列表的大小是可以伸缩变化的
+
+![](http://img.zwer.xyz/blog/20190904144534.png)
+
+##### 列表创建 #####
+
+```python
+>>> a = [x*2 for x in range(5)]  
+>>> a
+[0, 2, 4, 6, 8]
+>>> a = [x*2 for x in range(5) if x%2==0]
+>>> a
+[0, 4, 8]
+>>> a = list("HelloWorld")
+>>> a
+['H', 'e', 'l', 'l', 'o', 'W', 'o', 'r', 'l', 'd']
+```
+
+##### 列表元素的添加与删除 #####
+
+```python
+# 在列表的尾部，进行元素的增加与删除，属于列表的原地操作，速度快，效率高
+# append() 方法 
+# extend() 方法，连接两个列表
+# inserr() 方法，指定位置插入元素
+# del 列表名[下标] 删除位置的元素，本质上元素的拷贝，被删除的元素被后面的元素覆盖
+# pop 列表名[下标] 删除并返回指定位置的元素
+# remove(value) 方法 删除首次出现的指定元素
+# clear()方法 清空列表
+>>> a = list(x for x  in range(10))
+>>> a
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> a.append(10)
+>>> a
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+>>> a.insert(4,55)
+>>> a
+[0, 1, 2, 3, 55, 4, 5, 6, 7, 8, 9, 10]
+>>> a.extend([99,11])
+>>> a
+[0, 1, 2, 3, 55, 4, 5, 6, 7, 8, 9, 10, 99, 11]
+>>> a.pop()
+11
+>>> a
+[1, 2, 3, 55, 4, 5, 6, 7, 8, 9, 10, 99, 11, 99]
+>>> a.pop(0)
+1
+>>> a.remove(99)
+>>> a
+[2, 3, 55, 4, 5, 6, 7, 8, 9, 10, 11, 99]
+```
+
+##### 列表元素访问和计数 #####
+
+```python  
+# index(value) 获取指定元素在列表中首次出现的索引
+# count()  指定元素在列表中出现的次数
+# len(列表名)   列表的长度
+# in     成员资格判断
+```
+
+##### 列表切片 slice  #####
+
+```python
+#[start:end:step]
+```
+
+##### 列表排序 #####
+
+```python
+# sort() 默认是升序排列
+# sort(reverse=true) #降序
+# random.shuffle(列表)  #打乱排序
+# sorted(列表) 内置函数  #返回一个新的列表
+# reversed(列表) 内置函数 #返回一个 List 迭代器对象
+# max(列表) 内置函数
+# min(列表) 内置函数
+# sum(列表) 内置函数
+
+>>> a
+[2, 3, 4, 5, 6, 7, 8, 9]
+>>> import random
+>>> random.shuffle(a)
+>>> a
+[7, 8, 3, 9, 4, 5, 2, 6]
+>>> a.sort()
+>>> a
+[2, 3, 4, 5, 6, 7, 8, 9]
+>>> a.sort(reverse=True)
+>>> a
+[9, 8, 7, 6, 5, 4, 3, 2]
+>>> random.shuffle(a)
+>>> a
+[4, 9, 8, 2, 6, 7, 5, 3]
+>>> sorted(a)
+[2, 3, 4, 5, 6, 7, 8, 9]
+>>> sorted(a,reverse=True)
+[9, 8, 7, 6, 5, 4, 3, 2]
+>>> reversed(a)
+<list_reverseiterator object at 0x037CCA30>
+>>> list(reversed(a))
+[3, 5, 7, 6, 2, 8, 9, 4]
+>>> max(a)
+9
+>>> min(a)
+2
+>>> sum(a)
+44
+```
+
+#### 多维列表 ####
+
+##### 二维列表 #####
+
+```python
+>>> a = [1,2,3,4]
+>>> a.append([1,2,])
+>>> a
+[1, 2, 3, 4, [1, 2]]
+>>> a[4]
+[1, 2]
+>>> a[4][1]
+2
+```
+
+##### 二维列表遍历 #####
+
+```python
+'''
+    二维列表遍历
+    
+'''
+
+if __name__ == '__main__':
+    
+    a = [
+        ['1','zwz',20],
+        ['2','zwz2',24],
+        ['3','zwz3',26],
+    ]
+
+    for i in range(3):
+        for j in range(3):
+            print(a[i][j],end="\t")
+        print()
+
+```
+
+#### 元组 ####
+
+> 属于不可变序列
+
+1. 索引访问
+
+2. 切片操作
+3. 成员关系操作
+4. 比较运算操作
+5. 计数：元组长度 len()、最大值 max() 、最小值 min() 、求和 sum() 等
+
+##### 元组的创建 #####
+
+```python
+# 通过 () 创建元组
+# 通过 tuple() 创建元组
+# 注意：创建单个元素的元组时，后面的小括号不可省略
+>>> tup = (1,3,4)
+>>> type(tup)
+<class 'tuple'>
+>>> tup1 = 1,3,4
+>>> type(tup1)
+<class 'tuple'>
+>>> tup2 = (1)
+>>> type(tup2)
+<class 'int'>
+>>> tup2 = (1,)
+>>> type(tup2)
+<class 'tuple'>
+>>> tup4 = tuple("abc")
+>>> tup4
+('a', 'b', 'c')
+>>> tup5 = tuple(range(5))
+>>> tup5
+(0, 1, 2, 3, 4)
+>>> tup6 = tuple([1,3,4])
+>>> tup6
+(1, 3, 4)
+```
+
+##### zip  #####
+
+> zip(列表1，列表2，...) 将多个列表合成同一个元组列表
+
+```python
+>>> a1 = [1,2]
+>>> a2 = [4,5]
+>>> zip(a1,a2)
+<zip object at 0x034AB5A8>
+>>> zip
+<class 'zip'>
+>>> list(zip(a1,a2))
+[(1, 4), (2, 5)]
+```
+
+##### 生成器推导式创建元组 #####
+
+```python
+>>> s = (x for x in range(6))
+>>> s
+<generator object <genexpr> at 0x03DC5AE0>
+>>> tuple(s)
+(0, 1, 2, 3, 4, 5)
+>>> s.__next__()
+Traceback (most recent call last):
+  File "<pyshell#30>", line 1, in <module>
+    s.__next__()
+StopIteration
+>>> s = (x for x in range(6))
+>>> s.__next__()
+0
+>>> s.__next__()
+1
+>>> s.__next__()
+2
+```
+
+1. 元组的核心特点是：不可变序列
+2. 元素的访问和处理速度比列表快
+3. 与整数和字符串一样，元组可以作为字典的键，列表则永远作为字典的键使用
+
+#### 字典 ####
+
+> 键值对
+
+##### 字典的创建 #####
+
+```python
+# {}
+# dict()
+# dict.fromkeys()
+
+>>> a = {"id":"123","name":"zwz","age":"22"}
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22'}
+>>> a = dict(id="123",name="zwz",age="22")
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22'}
+>>> k1={"id","name","age"}
+>>> v1={"1","2","3"}
+>>> dict(zip(k1,v1))
+{'age': '2', 'name': '1', 'id': '3'}
+>>> a = dict.fromkeys(["id","name","age"])
+>>> a
+{'id': None, 'name': None, 'age': None}
+```
+
+##### 字典元素的访问 #####
+
+```python  
+ a = {"id":"123","name":"zwz","age":"22"}
+ 
+ # a[key]     #不存在，不会抛出异常
+ # a.get(key) #推荐使用，不存在返回 None
+ # a.items()  
+ # a.keys()
+ #len() 键值对的个数 
+ # in 检测一个 “键”是否在字典中
+ 
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22'}
+>>> a["id"]
+'123'
+>>> a.get("name")
+'zwz'
+>>> a.get("names","名字不存在")
+'名字不存在'
+>>> a.items()
+dict_items([('id', '123'), ('name', 'zwz'), ('age', '22')])
+>>> a.keys()
+dict_keys(['id', 'name', 'age'])
+>>> a.values()
+dict_values(['123', 'zwz', '22'])
+>>> len(a)
+3
+>>> name in a
+Traceback (most recent call last):
+  File "<pyshell#65>", line 1, in <module>
+    name in a
+NameError: name 'name' is not defined
+>>> "name" in a
+True
+```
+
+##### 字典元素的增加与删除 #####
+
+```python
+# del(item) 
+# 字典.pop(item)
+# 字典.popitem()
+
+>>> a= {"id":"123","name":"zwz","age":"22"}
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22'}
+>>> a["addr"]="AnHui"  # 添加
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22', 'addr': 'AnHui'}
+>>> del(a["id"])  #删除
+>>> a
+{'name': 'zwz', 'age': '22', 'addr': 'AnHui'}
+>>> a.pop('name')  #删除
+'zwz'
+>>> a.popitem()  #随机删除一个
+('addr', 'AnHui')
+```
+
+#### 序列解包 ####
+
+```python
+>>> a
+{'id': '123', 'name': 'zwz', 'age': '22'}
+>>> a1,a2,a3=a
+>>> a1
+'id'
+>>> a2
+'name'
+>>> a3
+'age'
+>>> a1,a2,a3=a.values()
+>>> a1
+'123'
+>>> a2
+'zwz'
+>>> a3
+'22'
+>>> al,a2,a3=a.items()
+>>> a1,
+('123',)
+>>> a2
+('name', 'zwz')
+>>> a3
+('age', '22')
+>>> 
+```
+
+练习
+
+```python
+'''
+    字典练习
+'''
+
+if __name__ == "__main__":
+
+    d = [
+        {"姓名":"高小一","年龄":18,"工资":10000},
+        {"姓名":"高小二","年龄":40,"工资":20000},
+        {"姓名":"高小三","年龄":20,"工资":12000}
+    ]
+    print("姓名"+" "+"年龄"+" "+"工资")
+    for i in range(len(d)):
+        #print(d[i])
+        print(d[i].get("姓名")+" "+\
+              str(d[i].get("年龄"))+" "+\
+              str(d[i].get("工资")),end="\t")
+        print()
+```
+
+1. 键必须可散列
+
+   1. 数字、字符串、元组，都是可散列的
+   2. 自定义对象需要支持下面三点
+      - 支持 hash 函数
+      - 支持通过 ` __eq__`
+      - 若 a == b 为真，则 hash(a) ==hash(b)也相同
+
+2. 字典在内存中开销巨大，典型的空间换时间
+
+3. 键查询速度很快
+
+4. 往字典里面添加新建可能导致扩容，导致散列表中键的次序变化。
+
+   因此不要遍历字典的同时进行字典的修改
+
+#### 集合 ####
+
+> 集合是无序可变，元素不能重复。实际上，集合底层实现是字典。
+
+集合的创建和删除
+
+```python
+a = {1,2,"ab"}
+
+set(['a','b'])
+```
+
+集合相关的操作
+
+```python
+if __name__ == "__main__":
+    a = {1,3,'sxt'}
+    b = {'h2','it','sxt'}
+    print(a | b)
+    print(a & b)
+    print(a - b)
+    print(a.union(b))
+    print(a.intersection(b))
+    print(a.difference(b))
+
+```
+
+### 控制语句 ###
+
+#### 选择结构 ####
+
+```python
+
+def numInput():
+    input = input("请输入:")
+    if int(input) > 10:
+        print("True")
+    else:
+        print("False")
+
+if __name__ == "__main__":
+    if []:
+        print("True")
+    else:
+        print("False")
+    if "":
+        print("True")
+    else:
+        print("False")
+    if "True":
+        print("ok")
+
+```
+
+#### 多分支选择结构 ####
+
+```python
+'''
+    给定一个坐标，判断二维坐标系的第一象限
+'''
+if __name__ == '__main__':
+    x,y=1,-3
+    if x > 0 and y > 0:
+        print("第一象限")
+    elif x < 0 and  y > 0:
+        print("第二象限")
+    elif x < 0 and y < 0:
+        print("第三象限")
+    elif x > 0 and y < 0:
+        print("第四象限")
+
+```
+
+#### 选择嵌套 ####
+
+根据给定的成绩（[0,100]）,判断成绩等级。若成绩大于90，则优秀。若成绩大于等于80小于90良好，则良好。若成绩大于等于60小于80，则及格，若成绩小于60，则不及格.
+
+```python
+'''
+根据给定的成绩（[0,100]）,判断成绩等级。
+若成绩大于90，则优秀。
+若成绩大于等于80小于90良好，则良好。
+若成绩大于等于60小于80，则及格，若成绩小于60，则不及格.
+'''
+
+def grade(score):
+    if score >= 90:
+        print("成绩优秀，等级为 A")
+    elif score >= 80 and score < 90:
+        print("成绩良好，等级为 B")
+    elif score >= 60 and score < 80:
+        print("成绩及格，等级为 C")
+    else:
+        print("成绩不及格，等级为 D")
+
+def grade2(score):
+    if score < 60:
+        print("成绩不及格，等级为 D")
+    elif score < 80:
+        print("成绩及格，等级为 C")
+    elif score < 90:
+        print("成绩良好，等级为 B")
+    else:
+        print("成绩优秀，等级为 A")
+
+# 优化选择分支逻辑
+def grade3(score):
+    rank = "ABCDE"
+    num =  score // 10
+    if num < 6:  # 整数除法
+        num = 5
+    print("成绩等级为"+rank[9-num])
+
+if __name__ == '__main__':
+    score = eval(input("请输入一个数字:"))
+    if score > 100 or score < 0:
+        print("请输入一个 [0,100] 之间的数:")
+    else:
+        grade3(score)
+
+
+```
+
+#### 三元条件运算符 ####
+
+```python
+print("ok" if 1>2 else "not ok")
+```
+
+### 循环结构 ###
+
+#### while 循环 ####
+
+```python
+'''
+    while 循环
+'''
+if __name__ == '__main__':
+    num = 1
+    while num <= 100 :
+        print(num,end='\t')
+        if num % 10 == 0:
+            print()
+        num += 1
+    print("**"*120)
+
+    i = 1
+    sum_all = 0
+    while i <= 100:
+        sum_all += i
+        i += 1
+    print("sum_all:"+str(sum_all))
+
+```
+
+#### for 循环 ####
+
+结构：
+
+```python
+for 变量 in 可迭代对象:
+	循环体语句
+```
+
+test
+
+```python
+if __name__ == '__main__':
+
+    for _ in range(9):
+        print(_,end='\t')
+    print()
+
+    for _ in "abcdegf":
+        print(_,end='\t')
+    print()
+
+    d = {"id": 100,"name": "zwz","age": 32}
+    for _ in d:
+        print(_,end="\t")
+    print()
+
+    for _ in d.keys():
+        print(_,end="\t")
+    print()
+
+    for _ in d.values():
+        print(_,end="\t")
+    print()
+
+    for _ in d.items():
+        print(_[0]," ",_[1])
+
+    # 0 到 100 求和
+    sum_all = 0
+    for num in range(101):
+        sum_all += num
+    print("sum_all:"+str(sum_all))
+```
+
+#### for 循环嵌套 ####
+
+```python
+
+if __name__ == '__main__':
+    for i  in range(1,11):
+        for j in range(1,11):
+            print(j,end='\t')
+        print()
+
+    print("*"*20)
+
+    for i in range(1,10):
+        for j in range(i,10):
+            print(i,"*",j,"=",i*j,end="\t")
+        print()
+        
+    print("*"*20)
+
+    d = dict(id="123", name="zwz", age=12)
+    d1 = dict(id="13", name="zweros", age=22)
+    d2 = dict(id="3", name="zwer", age=120)
+    persons = [d,d1,d2]
+    for  p in persons:
+        if p.get("age") > 20:
+            print(p)
+
+```
+
+#### break 语句 ####
+
+> 结束整个循环
+
+```python
+
+if __name__ == '__main__':
+
+    while True:
+        character = input("请输入一个数:")
+        if character.upper() == "Q":
+            break
+        elif character.isdigit():
+            print("character:"+character)
+        else:
+            print("输入有误，请输入数字，或按 q 键退出")
+```
+
+#### continue 语句 ####
+> 结束本次循环
+
+```python
+
+if __name__ == '__main__':
+    salList = []
+    while True:
+        sal = input("请输入对应的薪资(按 q 退出):")
+        if sal.upper() == "Q":
+            break
+        elif float(sal) < 0:
+            print("输入格式错误，请重新输入")
+            continue
+        salList.append(float(sal))
+
+    print(salList)
+    sum_all = sum(salList)
+    print("薪资总和:"+str(sum_all))
+```
+
+#### else 语句  ####
+- while 格式
+```python
+while 循环条件:
+	循环体
+else: 
+	执行语句
+```
+-  for 循环
+
+```python
+for 循环迭代条件:
+	循环体
+else:
+	执行语句
+```
+
+- 测试
+
+```python
+if __name__ == '__main__':
+    salList = []
+    for i in range(3):
+        sal = input("请三名员工输入对应的薪资(按 q 退出):")
+        if sal.upper() == "Q":
+            break
+        elif float(sal) < 0:
+            print("输入格式错误，请重新输入")
+            continue
+        salList.append(float(sal))
+    else:  #当 for 循环中没有执行了 break ，执行 else 语句
+        print("已成功录入三名员工信息")
+
+    print(salList)
+    sum_all = sum(salList)
+    print("薪资总和:"+str(sum_all))
+```
+
+#### 循环代码优化 ####
+1. 尽量减少循环内部不必要的计算
+2. 在嵌套循环中，尽量减少内层循环的计算次数
+3. 局部变量的查询较快，尽量使用局部变量
+
+```python
+
+import  time as t
+'''
+    循环代码优化，减少内部循环体中的计算
+'''
+if __name__ == '__main__':
+
+    start = t.time() #开始时间
+    for i  in range(10000):
+        result = []
+        for j in range(1000):
+            result.append(i*10+j)
+    print("所消耗的时间:"+str(t.time()-start))
+
+    print("**"*100)
+
+    start = t.time()  # 开始时间
+    for i in range(10000):
+        result = []
+        c = i * 10
+        for j in range(1000):
+            result.append(c + j)
+    print("所消耗的时间:" + str(t.time() - start))
+```
+
+##### 其他优化 #####
+1. 连接多个字符串，使用 join() 连接
+2. 在操作列表时，尽量在列表的尾部添加或删除元素
+
+
+#### zip 并行迭代 ####
+
+```python
+'''
+    zip 并行迭代
+'''
+if __name__ == '__main__':
+
+    s = ('1', '2', '3')
+    t = ('小黑', '小白' , '大白')
+    l = ['23', '10', '29']
+
+    for id,name,age in zip(s, t, l):
+        print("{}---{}---{}".format(id, name, age))
+
+    for i in range(3):
+        print("{}---{}---{}".format(s[i],t[i], l[i]))
+
+```
+
+#### 推导式 ####
+
+```python
+[表达式 for  item  in 可迭代对象]
+或者
+[表达式 for  item  in 可迭代对象 if 条件]
+```
+
+```python
+
+if __name__ == '__main__':
+
+    # 列表推导式
+    list = [_ for _ in range(20)]
+    print(list)
+
+    list = [_ for _ in range(20) if _%2 == 0]
+    print(list)
+
+    list = []
+    for i in range(20):
+        if i%2 == 0:
+            list.append(i)
+    print(list)
+
+    # 生成器推导式
+    tup = (t for t in range(20))
+    print(tup)  # <generator object <genexpr> at 0x034127E0>
+    print(tuple(tup))
+    #  (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19)
+    print(tuple(tup)) # ()
+
+
+    #字典推导式
+    text = "I'm a student,come from China. I love Anhui,I love China."
+    # 统计 text 文本中每个字符出现的次数
+    counts = {word:text.count(word) for word in text}
+    print(counts)
+
+    print("------"*20)
+
+    #for 循环实现统计 text 文本中每个字符出现的次数
+    counts = {}
+    for word in text:
+        if counts.get(word): #获取指定 key 的值，若不存在返回 False
+            counts[word] += 1
+        else:
+            counts[word] = 1
+    print(counts)
+    print("------" * 20)
+
+    #集合推导式
+    s = {word for word in text}
+    print(s)
+
+```
+
+### 函数 ###
+
+> 可重用的程序代码块，单一任务，函数也是对象
+
+#### 语法格式 ####
+
+```python
+def 函数名（[参数列表]）
+	'''函数说明'''
+	函数体
+```
+
+#### 形参、实参和文档注释 ####
+
+Just test it 
+
+```python
+def printMax(a, b):
+    '''
+        比较 a 和 b 两个值的大小关系
+    :param a:
+    :param b:
+    :return:
+    '''
+    print("较大值:" + str(a)) if a > b else print("较大值:" + str(b))
+
+
+if __name__ == '__main__':
+    printMax(100, 299)
+    printMax(19, 100)
+```
+
+#### 返回值 ####
+
+1. 如果函数体中包含 return语句，则结束函数执行并返回值
+2. 如果函数体中不包含 return ，则返回 None 值
+3. 要返回多个返回值，使用列表、元组、字典、集合将多个值 "存起来"
+
+```python
+def add(a, b):
+    c = a + b
+    print("计算{}和{}之和等于{}".format(a, b, c))
+    return c
+
+
+def test():
+    print("Hello")
+    # return   #return的作用 1.返回函数的返回值 2.结束函数执行
+    print("word")
+
+
+# 返回列表
+def test1(a, b, c):
+    return [a * 9, b * 8, c * 7]
+
+
+if __name__ == '__main__':
+    c = add(1, 3)
+    print(c)
+    print(add(1, 3) * 10)
+    test()
+    print(test1(1, 2, 3))
+
+```
+
+#### 函数对象——内存分析 ####
+
+![](http://img.zwer.xyz/blog/20190905091515.png)
+
+```python
+if __name__ == '__main__':
+    def test1():
+        print("Hello World")
+
+
+    test1()
+    c = test1
+    c()
+    print(id(test1), " ", id(c))
+    print(type(test1), " ", type(test1))
+    print(test1, " ", c)
+
+```
+
+#### 变量的作用域 ####
+
+global 关键字声明全局变量，便于在函数中改写全局变量的值
+
+```python
+a = 100  # 全局变量
+b = 9
+
+def test(b):
+    print("局部变量："+str(b))
+    global a  # 声明 a 为全局变量
+    print("全局变量:"+str(a))
+    a = 200
+    print(locals())#打印局部变量
+    print(globals())#打印全局变量
+
+
+
+if __name__ == '__main__':
+    test(10)
+    print(a)
+```
+
+#### 局部变量与全局变量 效率比较 ####
+
+```python
+import math as m
+import time as t
+
+def cal(a):
+    start = t.time()
+    for i in range(100000):
+        m.sqrt(a)
+    print("所花费的时间:{}".format(t.time()-start))
+
+def cal2(a):
+    start = t.time()
+    b = m.sqrt(a)
+    for i in range(100000):
+        b
+    print("所花费的时间:{}".format(t.time() - start))
+
+if __name__ == '__main__':
+    cal(90)
+    cal2(90)
+
+```
+
+#### 参数传递 ####
+
+##### 可变对象传递 #####
+
+```python
+def test(m):
+    '''
+        传递可变对象，对象的地址保持不变
+    :param m:  
+    :return:
+    '''
+    print(id(m))
+    m.append(30)
+    print(id(m))
+
+if __name__ == '__main__':
+    a = [1, 2]
+    print(id(a))
+    print(a)
+    print("*"*30)
+    test(a)
+    print(a)
+ 
+```
+
+#### 不可变对象传递 ####
+
+```python
+def test(m):
+    '''
+        传递不可变对象，对象的地址改变
+    :param m:
+    :return:
+    '''
+    print(id(m))
+    m += 20
+    print(id(m))
+
+if __name__ == '__main__':
+    a = 10
+    print(id(a))
+    print(a)
+    print("*"*30) # 分割行
+    test(a)
+    print(a)  # 10
+
+```
+
+#### 浅拷贝和深拷贝 ####
+
+```python
+import copy
+
+'''
+    AttributeError: 'function' object has no attribute 'copy'
+    注意：函数名不可与库名冲突
+'''
+
+
+def copyTest():
+    '''测试浅拷贝'''
+    a = [1, 2, [3, 4]]
+    print(id(a))
+    print(a)
+    print("浅拷贝...")
+    c = copy.copy(a)
+    c.append(3)
+    c[2][0] = 0
+    print(id(c))
+    print(c)
+
+
+def deepcopyTest():
+    '''测试深拷贝'''
+    a = [1, 2, [3, 4]]
+    print(id(a))
+    print(a)
+    print("深拷贝...")
+    c = copy.copy(a)
+    c.append(3)
+    c[2][0] = 0
+    print(id(c))
+    print(c)
+
+
+if __name__ == '__main__':
+    copyTest()
+    print("{:*^20}".format("华丽的分割线"))
+    deepcopyTest()
+```
+
+运行结果：
+
+```python
+D:\python\python3\python.exe "F:/pythoWorkspaces/20190905 my_function/08-copy-test.py"
+46994856
+[1, 2, [3, 4]]
+浅拷贝...
+46995616
+[1, 2, [0, 4], 3]
+*******华丽的分割线*******
+46994616
+[1, 2, [3, 4]]
+深拷贝...
+46994856
+[1, 2, [0, 4], 3]
+
+Process finished with exit code 0
+```
+
+#### 参数类型 ####
+
+- 位置参数
+
+- 默认值参数（必须，位于位置参数的后面）
+- 命名参数
+- 可变参数   *param（元组）  **param(字典)
+
+```python
+def test(a, b, c):
+    '''位置参数'''
+    print("我是{}-{}-{}".format(a, b, c))
+
+
+def test(a, b=1, c=1):
+    '''默认值参数 b，c'''
+    print("我是{}-{}-{}".format(a, b, c))
+
+
+def test1(*args):
+    print(args)
+
+
+def test2(*args, a):
+    print("args:{},a:{}".format(args, a))
+
+
+def test3(**args):
+    print(args)
+
+
+if __name__ == '__main__':
+    test(1, 2, 3)
+    test(1)
+    test(c=10, a=1, b=2)
+    test1(1, 2, 3, 4, 5)
+    # 注意 ：可变参数，添加位置参数，必须强制命名
+    test2(1, 2, 2, a=123)
+    test3(id="123", name="zwz", age="40")
+
+```
+
+#### lambda 表达式 ####
+
+> 声明匿名函数
+
+##### 语法格式 #####
+
+```python
+lambda *arg : expression
+```
+
+Just Test it 
+
+```python
+if __name__ == '__main__':
+    f = lambda a, b: a + b
+    print(f)
+    print(f(1, 2))
+
+    f1 = lambda *args: sum(args)
+    print(f1(1, 2, 3))
+
+    f2 = [lambda a: a * 2, lambda b: b * 10]
+    print(f2[0](10), " ", f2[1](9))
+
+```
+
+#### eval() 函数 ####
+
+```python
+if __name__ == '__main__':
+    s = "print('Hello Word')"
+    eval(s)
+
+    print("{0:*^20}".format("华丽的分割线"))
+
+    a = 1
+    b = 2
+    c = eval("a+b")
+    print(c)  #3
+
+    print("{0:*^20}".format("华丽的分割线"))
+
+    dict1 = dict(a=10,b=29)
+    d = eval("a+b",dict1) #39
+    print(d)
+
+
+```
+
+#### 递归函数 ####
+
+> 自己直接或间接调用自己的函数，注意：一定要有递归出口
+
+```python
+def test(a):
+    if a == 1:
+        return 1
+    else:
+        return a*test(a-1)
+
+def test1(n):
+    print("n:{:-^8}".format(n))
+    if n == 0:
+        print("over")
+    else:
+        test1(n-1)
+    print("返回{:-^8}".format(n))
+
+if __name__ == '__main__':
+    t = test(5)
+    print(t)
+    test1(8)
+```
+
+#### 嵌套函数 ####
+
+> 函数内部定义的函数
+
+```python
+if __name__ == '__main__':
+    def printName(isChinese,name,familyName):
+        def inner(a,b):
+            print("{}--{}".format(a,b))
+        #三元运算符
+        inner(familyName,name) if isChinese else inner(name,familyName)
+        
+
+    printName(True,"wenzhi","zhu")
+    printName(False,"wenzhi","zhu")
+
+```
+
+#### nonlocal关键字 ####
+
+nonlocal 用户来外层的局部变量
+
+global 用户声明全局变量
+
+```python
+if __name__ == '__main__':
+    g = 100
+    def outter():
+        b = 20
+        def inner():
+            nonlocal b  # 声明外部局部变量
+            print("b={}".format(b))
+            b = 10
+        inner()
+        global  g
+        g = 200
+        print("a=",g)
+
+
+    outter()
+```
+
+####  LEGB 规则 ####
+
+> Python 在查找 “名称” 时，是按照 LEGB 规则查找的： Local --> Enclosed -- > Global -- > Built in
+>
+> Local 指的是函数或者类的方法内部
+>
+> Enclosed 指的是嵌套函数
+>
+> Global 指的是模块的全局变量
+>
+> Built in 指的是 Python 为自己保留的特殊名称 
+
+```python
+if __name__ == '__main__':
+    print(str(30))
+    #str = "global str";
+    def outter():
+        #str = "outter str"
+        def inner():
+            #str = "inner str"
+            print(str)
+            print(str2)  # NameError: name 'str2' is not defined
+        inner()
+    outter()
+```
+
+## 面向对象 ##
+
+> 将数据和操作数据相关方法封装到类中
+
+#### 面向对象和面向过程的总结 ####
+
+- 解决问题的思维方式，都是代码组织的方式
+- 解决简单问题可以使用面向过程
+- 解决复杂问题：宏观上使用面向对象把握微观，处理上仍然是面向过程
+
+```python
+class Student:  # 类型，首字母大写，若有多个字母，采用驼峰命名
+
+    def __init__(self,name, score): # self 参数必须位于第一位
+        self.__name = name
+        self.__score = score
+
+    def say_score(self):
+        print("{}的成绩为:{}".format(self.__name,self.__score))
+
+if __name__ == '__main__':
+    s = Student("zwz",18)
+    print("Student:{}".format(Student)) # Student:<class '__main__.Student'>
+    print("s:{}".format(s))  # s:<__main__.Student object at 0x03111310>
+    s.say_score()
+
+
+```
+
+#### 构造函数 ####
+
+初始化创建好的对象，初始化指的是 ：“给实例属性赋值”
+
+#### 实例属性 ####
+
+实例属性从属与实例对象
+
+#### 实例方法 ####
+
+实例方法是从属于实例对象的方法
+
+```python
+s1 = Student("zweros",20)
+s1.say_score()
+Student.say_score(s1) # 解释器调用
+```
+
+##### 其他操作 #####
+
+```python
+# dir(obj) 获取对象的属性和方法
+# obj.__dict__   
+# pass  空语句，相当于占位符
+# isinstance(obj,Class)  #判断
+
+
+class Person:
+    pass
+    def test(self):
+        pass
+
+print(dir(s1))
+print(s1.__dict__)
+print(isinstance(s1,Person))
+print(isinstance(s1,Student))
+```
+
+#### 类对象 ####
+
+```python
+class Test:
+    pass
+
+if __name__ == '__main__':
+    print(type(Test))  # Test 类属于 type对象 
+    print(Test)
+```
+
+#### 类属性 ####
+
+```python
+class Student:
+
+    school = "szxy"  #类属性
+
+    def __init__(self,name,age):
+        self.__name = name
+        self.__age = age
+
+    def say_stu_info(self):
+        print("{}--{}--{}".format(self.__name,self.__age,self.school))
+
+if __name__ == '__main__':
+    Stu = Student
+    s1 = Stu("zwzos",20)
+    print(s1.__dict__," ",s1.school," ",Stu.school)
+```
+
+#### 类方法与静态方法 ####
+
+```python
+class Student:
+    SCHOOL = "szxy"
+
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+
+    @classmethod  # 声明类方法
+    def test(cls):
+        print(Student.SCHOOL)
+
+    @staticmethod  # 声明静态方法
+    def testStatic(a, b):
+        print("{0}+{1}={2}".format(a, b, a + b))
+
+
+if __name__ == '__main__':
+    Student.test()
+    Student.testStatic(1, 2)
+
+```
+
+#### 析构方法 ####
+
+Python 中垃圾回收采用 **引用计数**的算法
+
+执行 del 语句，调用 `__del__` 方法
+
+```python
+class Student:
+    SCHOOL = "szxy"
+
+    def __del__(self):
+        print("销毁对象{}".format(self))
+
+if __name__ == '__main__':
+    s1 = Student()
+    s2 = Student()
+    del s2   # 手动 s2 对象
+    print("{:*^20}".format("程序结束"))
+```
+
+#### `__call__()`方法和可调用对象 ####
+
+```python
+class Student:
+    SCHOOL = "szxy"
+
+    def __call__(self, *score):
+        return sum(score)
+
+
+if __name__ == '__main__':
+    s = Student()
+    print(s(90, 60, 80))
+
+```
+
+#### 方法没有重载 ####
+
+> Python 中方法参数是没有类型的
+>
+> 建议：不要使用重名的方法！Python 中方法没有重载
+
+#### 方法的动态性 ####
+
+> Pytohn 是动态语言，可以动态的为类添加新的方法，或者动态的修改类的已有的方法
+
+```python
+class Student:
+    SCHOOL = "szxy"
+
+    def study(self):
+        print("学习 使我快乐，我爱学习")
+
+
+def play(self, name):
+    print("{}酷爱王者荣耀".format(name))
+
+def study(self):
+    print("学习 使我头秃")
+
+if __name__ == '__main__':
+    s = Student()
+    Student.playGame = play  #添加新方法
+    s.playGame("zweros")
+    s.study()
+
+    print("{:*^20}".format("华丽的分割线"))
+
+    s1 = Student()
+    Student.study = study  # 修改旧方法
+    s1.playGame("123")
+    s1.study()
+```
+
+运行结果
+
+```python
+D:\python\python3\python.exe "F:/pythoWorkspaces/20190905 python-primary/OOP/06-dynamic-method.py"
+zweros酷爱王者荣耀
+学习 使我快乐，我爱学习
+*******华丽的分割线*******
+123酷爱王者荣耀
+学习 使我头秃
+
+Process finished with exit code 0
+```
+
+#### 私有属性——私有方法 ####
+
+```python
+class Student:  # 类型，首字母大写，若有多个字母，采用驼峰命名
+    ''' Student 类 '''
+
+    __school = "szxy"  # 私有类属性
+
+    def __init__(self, name, score):  # self 参数必须位于第一位
+        self.name = name
+        self.__score = score
+
+    def __study(self):  # 私有类方法
+        print("学习 使我快乐，我爱学习")
+        print("成绩是:{}".format(self.__score))  # 在类中调用私有属性
+
+
+if __name__ == '__main__':
+    s = Student("zwz", 60)
+    print(s.name)
+    print(s._Student__score)  # 调用私有变量
+    print(s._Student__school)  # 调用私有类属性
+    s._Student__study()  # 调用私有类方法
+
+```
+
+运行结果
+
+```python
+D:\python\python3\python.exe "F:/pythoWorkspaces/20190905 python-primary/OOP/07-private-attribute.py"
+zwz
+60
+szxy
+学习 使我快乐，我爱学习
+成绩是:60
+
+Process finished with exit code 0
+```
+
+#### @property 装饰器 ####
+
+> @property  可以将一个方法调用方式变成 “属性调用”，作用为属性增加  Setter 和 Getter 方法
+
+```python
+class Employee:
+
+    def __init__(self, name, salary):
+        self.__name = name
+        self.__salary = salary
+
+    # 使用装饰器
+    @property
+    def salary(self):
+        return self.__salary
+
+    @salary.setter
+    def salary(self,salary):
+        if salary < 0 | salary > 100E10:
+            print("薪资输入有误")
+        else:
+            self.__salary = salary
+
+
+'''
+    def get_salary(self):
+        return self.__salary
+
+    def set_salary(self,salary):
+        if salary < 0 | salary > 100E10:
+            print("薪资输入有误")
+        else:
+            self.__salary = salary
+'''
+
+if __name__ == '__main__':
+    e = Employee("zweros", 3300)
+    # print(e.get_salary())
+    # e.set_salary(15000)
+    # print(e.get_salary())
+    print(e.salary)
+    e.salary = 9000
+    print(e.salary)
+
+```
+
+#### 面向对象的三大特性 ####
+
+##### 继承 #####
+
+> 支持多重继承，若一个类没有继承其他类，则默认继承 Object 类
+
+语法格式
+
+```python
+class 子类类名(父类1 [,父类2...]):
+    类体
+```
+
+Just test it 
+
+```python
+#  父类，或称为基类
+class Person:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        self.__age = age
+
+    def say_info(self):
+        print("name:{}-age:{}".format(self.__name, self.__age))
+
+
+# 子类或称为派生类
+class Employee(Person):
+    '''雇员类'''
+    def __init__(self, name, age, salary):
+        # 注意： self 参数也要传过去,TypeError: __init__() missing 1 required positional argument: 'age'
+        Person.__init__(self, name, age)
+        self.__salary = salary
+
+    @property
+    def salary(self):
+        return self.__salary
+
+    @salary.setter
+    def salary(self, salary):
+        self.__salary = salary
+
+
+if __name__ == '__main__':
+    p = Person("苏沫婷", 25)
+    print(p.__dict__)
+    p.say_info() #Person.say_info(p)
+    print("{:*^20}".format("华丽的分割线"))
+    e = Employee("婷哥", 20, 4000)
+    print(e.__dict__)
+    e.say_info()
+```
+
+#### 方法重写 ####
+
+1. 成员继承：子类继承了父类除构造方法之外的所有成员
+2. 方法重写：子类可以重新定义父类中的方法，这样就会覆盖父类的方法，也称为了“重写”
+
+```python
+#  父类，或称为基类
+class Person:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+        self.__name = name
+
+    @property
+    def age(self):
+        return self.__age
+
+    @age.setter
+    def age(self, age):
+        self.__age = age
+
+    def say_info(self):
+        print("name:{}-age:{}".format(self.__name, self.__age))
+
+
+# 子类或称为派生类
+class Employee(Person):
+    '''雇员类'''
+    def __init__(self, name, age, salary):
+        # 注意： self 参数也要传过去,TypeError: __init__() missing 1 required positional argument: 'age'
+        Person.__init__(self, name, age)
+        self.__salary = salary
+
+    @property
+    def salary(self):
+        return self.__salary
+
+    @salary.setter
+    def salary(self, salary):
+        self.__salary = salary
+
+    def say_info(self):
+        '''  重写类的方法 '''
+        print("name:{}-age:{}--{}".format(self.name,self.age,self.__salary))
+
+
+if __name__ == '__main__':
+    p = Person("苏沫婷", 25)
+    print(p.__dict__)
+    p.say_info() #Person.say_info(p)
+    print("{:*^20}".format("华丽的分割线"))
+    e = Employee("婷哥", 20, 4000)
+    print(e.__dict__)
+    e.say_info()
+```
+
+#### 查看类的继承层次结构 ####
+
+通过类的方法` mro()` 或者 类的属性`__mro__` 可以输出这个类的继承层次结构
+
+```python
+class A:
+    pass
+
+
+class B(A):
+    pass
+
+
+class C(B):
+    pass
+
+
+if __name__ == '__main__':
+    '''查看类的层次结构'''
+    # [<class '__main__.C'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>]
+    print(C.mro())
+    # [<class '__main__.C'>, <class '__main__.B'>, <class '__main__.A'>, <class 'object'>]
+    print(C.__mro__)
+
+```
+
+#### object 类 ####
+
+```python
+class  Test(object):
+    pass
+
+if __name__ == '__main__':
+    print(dir(object))
+```
+
+内置函数 dir() 查看对象的属性
+
+#### 重写 ``__str__` 方法 ####
+
+> 返回对象的描述
+
+```python
+class Student(object):
+    def __init__(self, name, age, score):
+        self.__name = name
+        self.__age = age
+        self.__score = score
+
+    def __str__(self):
+        return "名字是{}，年龄是{}，成绩是{}".format(self.__name, self.__age, self.__score)
+
+
+if __name__ == '__main__':
+    s = Student("zweros", 20, 80)
+    print(s)
+
+```
+
+#### 多重继承 ####
+
+> Python 支持多重继承，一个子类有多个“直接父类”
+
+```python
+
+
+class A(object):
+    def say(self):
+        print("say AAA")
+
+class B(A):
+    def say(self):
+        print("say  BBBB")
+
+
+class C(A):
+    def say(self):
+        print("say CCCC")
+
+class D(C,B):
+    pass
+
+if __name__ == '__main__':
+    d = D()
+    print(dir(d))
+```
+
+#### MRO  ####
+
+> MRO （Method Resolution Order ）:方法解析顺序。
+
+```python
+'''
+    MRO 方法查找顺序
+'''
+
+
+class A(object):
+    def say(self):
+        print("say AAA")
+
+class B(A):
+    def say(self):
+        print("say  BBBB")
+
+
+class C(A):
+    def say(self):
+        print("say CCCC")
+
+class D(C,B):
+    pass
+
+if __name__ == '__main__':
+    d = D()
+    print(dir(d))
+    d.say()  # 调用方法顺序，从继承时“从左到右 ”查找
+```
+
+#### super()  ####
+
+> 获取父类定义
+
+```python
+'''
+    测试 super()
+'''
+
+class A:
+    def say(self):
+        print("say AAA")
+
+class B(A):
+    def say(self):
+        #A.say(self)
+        super().say()
+        print("say BBB")
+
+if __name__ == '__main__':
+    b = B()
+    b.say()
+    print(type(A)," ",type(B)," ",type(b))
+```
+
+#### 多态 ####
+
+```python
+
+class Animal:
+    def shut(self):
+        print("动物 叫了。。。")
+
+class Dog(Animal):
+    def shut(self):
+        print("汪汪汪 ....")
+
+class Cat(Animal):
+    def shut(self):
+        print("喵喵喵 ...")
+
+def animalShut(a):
+    if isinstance(a,Animal):
+        print(type(a))
+        a.shut()
+    else:
+        print("不属于动物...")
+
+if __name__ == '__main__':
+    animalShut(Dog())
+    animalShut(Cat())
+    animalShut(str())
+
+
+```
+
+#### 特殊方法和运算符重载 ####
+
+```python
+
+class Person:
+    def __init__(self,name,age):
+        self.__name  = name
+        self.__age = age
+
+    def __add__(self, other):
+        if isinstance(other,Person):
+            return "{0}--{1}".format(self.__name,other.__name)
+        else:
+            print("不是同类型对象")
+    def __mul__(self,other):
+        if isinstance(other, int):
+            return "{0}".format(self.__name)*other
+        else:
+            print("不是同类型对象")
+
+if __name__ == '__main__':
+    p = Person("小黑",20)
+    p1 = Person("小白",30)
+    print(p+p1)
+    print(p*3)
+
+
+```
+
+#### 特殊属性 ####
+
+![](http://img.zwer.xyz/blog/20190905203403.png)
+
+
+
+```python
+class A:
+    pass
+
+
+class B(A):
+    pass
+
+
+class C(A):
+    def __init__(self, a):
+        self.__a = a
+
+    def __str__(self):
+        return "a={}".format(self.__a)
+
+
+if __name__ == '__main__':
+    cc = C(1)
+    print(cc)
+    print(C.__dict__)
+    print(C.__class__) # <class 'type'>
+    print(C.__mro__)  # (<class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
+    print(C.__bases__)
+    print(C.__base__)
+    print(A.__subclasses__())
+
+```
+
+#### 对象的变量的赋值与拷贝 ####
+
+```python
+import  copy
+
+class Computer:
+    def __init__(self,cpu,memory,disk):
+        self.__cpu = cpu
+        self.__memory = memory
+        self.__disk = disk
+
+class CPU:
+    pass
+class Memory:
+    pass
+class Disk:
+    pass
+
+if __name__ == '__main__':
+    # 测试变量赋值
+    c1 = CPU()
+    c2 = c1
+    print("c1:",c1)
+    print("c2:",c2)
+
+    print("{:*^20}".format("测试对象浅拷贝"))
+    # 测试对象浅拷贝
+    comp = Computer(CPU(),Memory(),Disk())
+    comp1 = copy.copy(comp)
+    print(comp,comp._Computer__cpu,comp._Computer__memory,comp._Computer__disk)
+    print(comp1,comp1._Computer__cpu,comp1._Computer__memory,comp1._Computer__disk)
+
+    print("{:*^20}".format("测试对象深拷贝"))
+    # 测试对象深拷贝
+    comp = Computer(CPU(),Memory(),Disk())
+    comp1 = copy.deepcopy(comp)
+    print(comp,comp._Computer__cpu,comp._Computer__memory,comp._Computer__disk)
+    print(comp1,comp1._Computer__cpu,comp1._Computer__memory,comp1._Computer__disk)
+
+```
+
+#### 组合 ####
+
+> is a  关系 ，使用 继承
+>
+> has  -a  关系，使用组合
+
+```python
+
+'''测试 组合'''
+
+class A:
+    def helloA(self):
+        print("Hello A")
+
+class B(A):  #  B 继承了 A
+    pass
+
+class C:
+    def helloC(self):
+        print("Hello C")
+
+class D:
+    def __init__(self,c):
+        self.__c = c
+
+    @property
+    def c(self):
+        return self.__c
+
+    @c.setter
+    def c(self,c):
+        self.__c = c
+
+    def __str__(self):
+        return "c={}".format(self.__c)
+
+if __name__ == '__main__':
+    #  is a 继承关系
+    b = B()
+    b.helloA()
+
+    #  has a  组合关系
+    c = C()
+    d = D(c)
+    d.c.helloC()
+```
+
+#### 设计模式 ####
+
+##### 工厂模式 #####
+
+> 实现了创建者和调用者的分离，使用专门的工厂将选择实现类、创建对象进行统一的管理和控制
+
+```python
+
+'''
+    工广模式
+'''
+
+class CarFactory:
+
+    @staticmethod
+    def createCar(car):
+        if car == "宝马":
+            return BM()
+        elif car == "比亚迪":
+            return BYD()
+        elif car == "江淮":
+            return JH()
+        else:
+            print("抱歉没有符合类型的汽车")
+
+class BM:
+    pass
+class BYD:
+    pass
+class JH:
+    pass
+
+if __name__ == '__main__':
+    car= CarFactory.createCar("江淮")
+    print(car)
+    car= CarFactory.createCar("宝马")
+    print(car)
+    car= CarFactory.createCar("比亚迪")
+    print(car)
+    car= CarFactory.createCar("奔馳")
+
+
+```
+
+#### 单例模式 ####
+
+> 确保一个类只要一个实例
+
+```python
+class MySingleton:
+    __obj = None  # 类属性，初始化为空值
+    __obj__flag = True
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__obj == None :
+            cls.__obj = object.__new__(cls)
+        return cls.__obj
+
+    def __init__(self):
+        if MySingleton.__obj__flag:
+            print("init 初始化...")
+            MySingleton.__obj__flag = False
+
+if __name__ == '__main__':
+    my = MySingleton()
+    my2 = MySingleton()
+    print(my)
+    print(my2)
+    my3 = MySingleton()
+    print(my3)
+
+```
+

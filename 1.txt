@@ -1,1 +1,3 @@
-OKOK !---ok
+OKOK !--
+git commit -a 
+-ok

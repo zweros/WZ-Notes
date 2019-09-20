@@ -1,0 +1,30 @@
+  <!-- Mybatis 启动器 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <!-- mysql 数据库驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- druid 数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.9</version>
+        </dependency>
+
+spring.datasource.driverClassName=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/ssm
+spring.datasource.username=root
+spring.datasource.password=root
+
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+
+mybatis.type-aliases-package=com.szxy.pojo
+
+
+注意：启动类上加注解
+@MapperScan("com.szxy.mapper")  //用户扫描 Mybatis 的Mapper 接口

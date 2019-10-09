@@ -1,5 +1,6 @@
 ---
 title: 20190801 Spring Boot
+date: 2019-08-01
 ---
 
 # Spring Boot #

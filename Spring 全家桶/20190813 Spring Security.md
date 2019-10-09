@@ -1,5 +1,6 @@
 ---
 title: 20190813 Spring Security
+date: 2019-08-13
 ---
 
 # Spring Security #

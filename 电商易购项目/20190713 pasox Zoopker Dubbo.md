@@ -1,3 +1,8 @@
+---
+title: Pasos zookeeper Dubbo 
+date: 2019-07-15
+---
+
 ## Paxos  数据一致性算法
 
 > 用于分布式系统的 ZooKeeper 数据一致性算法

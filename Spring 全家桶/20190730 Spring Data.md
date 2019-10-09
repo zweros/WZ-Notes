@@ -1,5 +1,6 @@
 ---
 title: 20190730 Spring Data
+date: 2019-07-30
 ---
 
 # SpringData #

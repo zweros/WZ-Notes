@@ -30,11 +30,11 @@
 
 ## Spring 篇
 
-- <a href="20190506 Spring 框架.md">Spring 框架</a>
+- <a href="doc/20190506 Spring 框架.md">Spring 框架</a>
 
 
 
 ## Java 高级技术篇
 
-- <a href="20190516 Linux OS使用.md">Linux OS 的使用</a>
+- <a href="doc/20190516 Linux OS使用.md">Linux OS 的使用</a>
 

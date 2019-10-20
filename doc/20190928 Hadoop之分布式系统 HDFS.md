@@ -1,5 +1,5 @@
 ---
-title: 20190928 Hadoop
+title: 20190928 HDFS
 date: 2019-09-28
 ---
 
@@ -18,10 +18,10 @@ date: 2019-09-28
 | 模块                                                        | 特点                                              |
 | ----------------------------------------------------------- | ------------------------------------------------- |
 | 分布式存储系统HDFS （Hadoop Distributed File System ）POSIX | 提供了 高可靠性、高扩展性和高吞吐率的数据存储服务 |
-| 分布式计算框架MapReduce分布式计算框架（计算向数据移动）     | 具有 易于编程、高容错性和高扩展性等优点。         |
+| 分布式计算框架 MapReduce 分布式计算框架（计算向数据移动）   | 具有 易于编程、高容错性和高扩展性等优点。         |
 | 分布式资源管理框架YARN（Yet Another Resource Management）   | 负责集群资源的管理和调度                          |
 
-## HDFS ##
+## HDFS
 
 ### 存储模型：字节* ###
 
@@ -38,8 +38,6 @@ date: 2019-09-28
 注意：同一个机器不能存储两个相同的副本，副本应该存在不同的机器上的。
 
 ![](http://img.zwer.xyz/blog/20190928193642.png)
-
-
 
 
 
@@ -182,7 +180,7 @@ r: read; w:write; x:execute
 
 如果Linux系统用户zhangsan使用hadoop命令创建一个文件，那么这个文件在HDFS中owner就是zhangsan。
 
-HDFS的权限目的：阻止好人错错事，而不是阻止坏人做坏事。HDFS相信，你告诉我你是谁，我就认为你是谁。
+<font color='pinkbrown'>HDFS的权限目的：阻止好人错错事，而不是阻止坏人做坏事。HDFS相信，你告诉我你是谁，我就认为你是谁。</font>
 
 ### 安全模式 ###
 namenode启动的时候，首先将映像文件(fsimage)载入内存，并执行编辑日志(edits)中的各项操作。
@@ -353,7 +351,7 @@ ll -h
 
 ### 准备 ###
 
-|        | NN   | SNN  | DN   |
+| HOST   | NN   | SNN  | DN   |
 | ------ | ---- | ---- | ---- |
 | node01 | *    |      |      |
 | node02 |      | *    | *    |
@@ -572,7 +570,7 @@ scp -r ./zookeeper-3.4.6/ root@node04:`pwd`
 # 第一次部署
 # 1.启动 node01、node02、node03 的 journalnode
 hadoop-daemon.sh start journalnode
-# 2.格式化 node01 dfs
+# 2.格式化 node01 dfs(仅第一次)
 hdfs namenode –format
 # 3.启动 node01 的 NN ，启动 node02 的 standyNN
 hadoop-daemon.sh start namenode   # 在 node01
@@ -619,7 +617,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys  # 对自己免密钥
 
 3. 点击 New 按钮，新建一个用户库，自定义库的名称
 
-4. 选择刚创建自定义用户库，点击 Add Exteral JARs ...点击，选择需要添加 jar 包，最后确定即可
+4. 选择刚创建自定义用户库，点击 Add Exteral JARs... 点击，选择需要添加 jar 包，最后确定即可
 
 ![](http://img.zwer.xyz/blog/20191008211524.png)
 
@@ -627,7 +625,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys  # 对自己免密钥
 
 
 
-### HDFS-api ###
+### HDFS-api 的使用 ###
 
 ```java
 public class  TestHDFS{

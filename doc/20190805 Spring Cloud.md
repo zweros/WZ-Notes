@@ -2513,6 +2513,9 @@ public class ConsumerApplication {
 ```properties
 #设置负载均衡策略 eureka-provider 为调用的服务的名称
 eureka-provider.ribbon.NFLoadBalancerRuleClassName=com.netflix.loadbalancer.RandomRule
+
+
+
 ```
 
 注意：不同的服务提供者配置的前缀不同，但是都 ` ribbon.NFLoadBalancerRuleClassName ` 要保持一致

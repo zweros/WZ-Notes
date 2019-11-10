@@ -36,7 +36,7 @@ date: 2019-08-05
 >
 > 每个微服务**仅关注于完成一件任务并很好的完成该任务**。 
 
-#### 架构风格 ####
+架构风格
 
 > 项目的一种设计模式（非GOF23）。
 
@@ -78,7 +78,7 @@ date: 2019-08-05
 
 ![](http://img.zwer.xyz/blog/20190805102443.png)
 
-##### Y 轴数据（功能） #####
+- Y 轴数据（功能）
 
 Y 轴扩展会将庞大的整体应用拆分为多个服务。每个服务实现一组相关的功能，如订单管理、客户管理等。在工程上常见的方案是 **服务化架构**(SOA)。比 如对于一个电子商务平台，我们可以拆分成不同的服务，组成下面这样的架构： 
 
@@ -88,15 +88,13 @@ Y 轴扩展会将庞大的整体应用拆分为多个服务。每个服务实现
 
 ![](http://img.zwer.xyz/blog/20190805103051.png)
 
-##### X 轴（水平扩展） #####
+- X 轴（水平扩展）
 
 X 轴扩展与我们前面朴素理念是一致的，通过绝对平等地复制服务与数据， 以解决容量和可用性的问题。其实就是将微服务运行多个实例，做集群加负载均 衡的模式。 为了提升单个服务的可用性和容量， **对每一个服务进行** **X** **轴扩展划分** 。
 
 ![](http://img.zwer.xyz/blog/20190805103157.png)
 
-
-
-##### Z 轴数据分区 #####
+- Z 轴数据分区
 
 Z 轴扩展通常是指基于请求者或用户独特的需求，进行系统划分，并使得划 
 
@@ -150,7 +148,7 @@ Z 轴扩展通常是指基于请求者或用户独特的需求，进行系统划
 
 1) 无状态协议 HTTP，具备先天优势，扩展能力很强。例如需要安全加密，有 现成的成熟方案 HTTPS 即可。
 
- 2) JSON 报文序列化，轻量简单，人与机器均可读，学习成本低，搜索引擎友 好。
+ 2) JSON 报文序列化，轻量简单，人与机器均可读，学习成本低，搜索引擎友好。
 
 3) 语言无关，各大热门语言都提供成熟的 Restful API 框架，相对其他的一些 RPC 框架生态更完善。
 
@@ -202,19 +200,17 @@ Spring Cloud 是一个微服务框架，相比 Dubbo 等 RPC 框架, **Spring Cl
 
 > 设计的目的是为了更好的管理每个 Spring Cloud 的子项目的清单。避免子的版本号与子项目的版本号混淆。 
 
-#### Spring Cloud 命名规则 ####
+- Spring Cloud 命名规则
 
 采用伦敦的地铁站名称来作为版本号的命名，
 
 根据首字母排序，字母顺序靠后的版本号越大
 
-#### 版本发布计划 ####
+- 版本发布计划
 
 ![](http://img.zwer.xyz/blog/20190805114208.png)
 
-
-
-#### 常见版本号说明 ####
+- 常见版本号说明
 
 软件版本号：2.0.2 RELEASE
 
@@ -802,9 +798,7 @@ spring.rabbitmq.password=
 
 ![](http://img.zwer.xyz/blog/20190806165100.png)
 
-
-
-##### 服务提供者 #####
+**服务提供者**
 
 - 修改 application.yml
 
@@ -864,7 +858,7 @@ public class Sender {
 
 ```
 
-##### 服务消息者 #####
+**服务消息者**
 
 - 修改 application.properties
 
@@ -977,9 +971,7 @@ public class ErrorReceiver {
 
 ![](http://img.zwer.xyz/blog/20190806165033.png)
 
-
-
-##### 服务提供者 #####
+**服务提供者**
 
 - application.yml
 
@@ -1152,9 +1144,7 @@ public class QueueTest {
 }
 ```
 
-
-
-##### 服务消费者 #####
+**服务消费者**
 
 - application.yml
 
@@ -1302,9 +1292,7 @@ public class AllReceiver {
 
 ![](http://img.zwer.xyz/blog/20190806194157.png)
 
-
-
-##### 服务提供者 #####
+**服务提供者**
 
 - application.properties
 
@@ -1380,7 +1368,7 @@ public class QueueTest {
 
 ```
 
-##### 服务消息者 #####
+**服务消息者**
 
 - application.properties
 
@@ -2140,14 +2128,13 @@ Make Remote Call(远程调用)：完成服务的远程调用。
 
 ### 自我保护 ###
 
-|                                                              |
-| ------------------------------------------------------------ |
 | 自我保护                                                     |
+| ------------------------------------------------------------ |
 | 1. **自我保护的条件**<br/>一般情况下，微服务在 Eureka 上注册后，会**每 30 秒发送心跳包**，Eureka 通过心跳来判断服务时候健康，同时会定期删除超过 90 秒没有发送心跳服务。<br/>2. 有两种情况会导致 Eureka Server 收不到微服务的心跳<br/>a.是微服务自身的原因<br/>b.是微服务与 Eureka 之间的网络故障<br/>通常(微服务的自身的故障关闭)只会导致个别服务出现故障，一般不会出现大面积故障，而(网络故障)通常会导致 Eureka Server 在短时间内无法收到大批心跳。考虑到这个区别，Eureka 设置了一个阀值，当判断挂掉的服务的数量超过阀值时，Eureka Server 认为很大程度上出现了网络故障，将不再删除心跳过期的服务。<br/>3. 那么这个阀值是多少呢？<br/>15 分钟之内是否低于 85%；<br/>Eureka Server 在运行期间，会统计心跳失败的比例在 15 分钟内是否低于 85%<br/>这种算法叫做 Eureka Server 的自我保护模式。 |
 | 自我保护的原因                                               |
 | 1. 因为同时保留"好数据"与"坏数据"总比丢掉任何数据要更好，当网络故障恢复后，这个 Eureka 节点会退出"自我保护模式"。<br/> 2. Eureka 还有客户端缓存功能(也就是微服务的缓存功能)。即便 Eureka 集群中所有节点都宕机失效，微服务的 Provider 和 Consumer都能正常通信。<br/>3. 微服务的负载均衡策略会自动剔除死亡的微服务节点。 |
 
-#### 关闭保护 ####
+**关闭保护**
 
 ```properties
 #关闭自我保护:true 为开启自我保护，false 为关闭自我保护
@@ -6477,10 +6464,8 @@ public class SenderServiceTest {
 
 ![](http://img.zwer.xyz/blog/20190813100110.png)
 
+- **安装  ElasticSearch**
 
-
-
-#### 安装  ElasticSearch
 ```shell
 # 查看当前 Linux 的内核
 uname -a 
@@ -6553,8 +6538,7 @@ http://192.168.70.140:9200/
 
 ![](http://img.zwer.xyz/blog/20190812183624.png)
 
------
-####  安装  Head 插件
+- **安装  Head 插件**
 
 [npminstall报错：Connecttimeoutfor5000ms踩坑](http://blog.sina.com.cn/s/blog_17689050c0102yhq1.html)
 
@@ -6612,8 +6596,7 @@ curl -XPUT http://192.168.70.140:9200/applog
 
 ![1565615415446](D:\photo\TyporaPicture\1565615415446.png)
 
-
-#### 安装 Logstach 
+- **安装 Logstach** 
 
 ```shell
 #1.下载压缩
@@ -6655,7 +6638,8 @@ elasticsearch {
 #3.测试curl 'http://192.168.70.140:9200/_search?pretty'
 ```
 
-####  安装 Kibana 
+- **安装 Kibana** 
+
 ```shell
 #1.下载压缩包
 wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.3-linux-x86_64.tar.gz
@@ -6690,7 +6674,7 @@ zipkin 原理中文版论文地址
 http://bigbully.github.io/Dapper-translation/
 ```
 
-##### 搭建 sleuth-zipkin-server 端
+**搭建 sleuth-zipkin-server 端**
 
 - 创建 maven 项目，并修改 pom 文件
 
@@ -6819,7 +6803,8 @@ spring.zipkin.base-url=http://127.0.0.1:9411/
 
 ![](http://img.zwer.xyz/blog/20190813142644.png)
 
-##### ZipKin 执行原理
+**ZipKin 执行原理图**
+
 ![](http://img.zwer.xyz/blog/20190813142901.png)
 
 

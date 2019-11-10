@@ -89,7 +89,7 @@ src: 指明引入文件的路径
 >
 > boolean 类型(布尔类型)  true 1  false  0
 >
-> objet 类型(对象类型)
+> object 类型(对象类型)
 >
 > 特殊数据类型:
 >

@@ -24,7 +24,11 @@ date: 2019-10-26
 
 Lucene 是 Apache 软件基金会的一个项目，是一个开发源码的全文检索引擎工具包，是一个全文检索引擎的一个架构。提供了完成的查询引擎和检索引擎，部分文本分析引擎。
 
-### 倒排索引
+官方解释：
+
+Lucene is a Java full-text search engine. Lucene is not a complete application, but rather a code library and API that can easily be used to add search capabilities to applications.
+
+### 倒排索引*
 
 通俗解释，我们通常都是通过查找文件位置及文件名，再查找文件的内容。倒排索引可以理解为通过文件内容来查找文件位置及文件名的。
 
@@ -32,7 +36,7 @@ Lucene 是 Apache 软件基金会的一个项目，是一个开发源码的全�
 
 倒排索引也是 lucence 的索引核心。
 
-举例：有两个文档 doc，id 分别为 1,2 。doc-id-1中的 content 是“我是中国人”，doc-id-2 中的 content 是 “中国是全球人口最多的国家，中国人也最多”。紧接着为这两个文档建立倒排索引。先读取 doc 文档，使用分词器对 content 中的内容 content 进行分词，产生的结果放入索引 index 表中。以“中国”这个词为例，中国（1:1）{2}，（2:2）{0,15}。（1:1）{2}表示的意思是中国这个词出现在 id 为 1 的 doc 文档中，且出现的次数为 1，偏移量为 2 。（2:2）{0,15}  表示的意思是中国这个词出现在 id 为 2 的doc 文档猴子那个，且出现的次数为 2，偏移量有0,15 。
+举例：有两个文档 doc，id 分别为 1,2 。doc-id-1中的 content 是“我是中国人”，doc-id-2 中的 content 是 “中国是全球人口最多的国家，中国人也最多”。紧接着为这两个文档建立倒排索引。先读取 doc 文档，使用分词器对 content 中的内容进行分词，产生的结果放入索引 index 表中。以“中国”这个词为例，中国（1:1）{2}，（2:2）{0,15}。（1:1）{2}表示的意思是中国这个词出现在 id 为 1 的 doc 文档中，且出现的次数为 1，偏移量为 2 。（2:2）{0,15}  表示的意思是中国这个词出现在 id 为 2 的doc 文档猴子那个，且出现的次数为 2，偏移量有0,15 。
 
 <img src="http://img.zwer.xyz/blog/20191027103435.png" style="zoom: 67%;" />
 

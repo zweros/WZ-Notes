@@ -221,6 +221,10 @@ public @interface EnableRedisHttpSession {
 ### 更换 Spring Session 序列化器 ###
 
 > Spring  Session 默认采用 JDK 序列器，其特点是占用内存较大，效率低下。这里更换为其他序列器
+>
+> JDK 序列化器是增量序列化器，只对变化的字段修改
+>
+> JackSon 序列化器是全量序列化器
 
 ```java
 @Configuration

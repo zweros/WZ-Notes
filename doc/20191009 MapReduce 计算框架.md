@@ -3,7 +3,11 @@ title: 20191009 Hadoop-MapReduce
 date: 2019-10-09
 ---
 
-# MapReduce #
+[TOC]
+
+
+
+## MapReduce ##
 
 ## MR 理论
 
@@ -1014,7 +1018,7 @@ public void init(MapOutputCollector.Context context
 
 ## <font color='blue'>MapReduce 案例</font>
 
-### 天气
+### 天气分析
 
 - 需求
 

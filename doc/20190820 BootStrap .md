@@ -3,7 +3,7 @@ title: 20190820 Bootstrap
 date: 2019-08-20
 ---
 
-# Bootstrap #
+## Bootstrap
 
 > 经典且流行，**UI 框架**
 
@@ -89,7 +89,7 @@ BooStrap 中文手册：https://v3.bootcss.com/css/
 
 ### 栅格系统实现原理 ###
 
-#### 1 使用 Js 控制 div 宽度 ####
+- **使用 Js 控制 div 宽度**
 
 ```html
 <!DOCTYPE html>
@@ -146,7 +146,7 @@ BooStrap 中文手册：https://v3.bootcss.com/css/
 </html>
 ```
 
-#### 2 使用 css 媒体查询 ####
+- **使用 css 媒体查询**
 
 ```html
 <!DOCTYPE html>
@@ -324,4 +324,35 @@ BooStrap 中文手册：https://v3.bootcss.com/css/
 </script>
 </html>
 ```
+
+## BootStrap 开发
+
+### CSS 层叠样式表
+
+选择器的使用 
+
+复杂选择器不会使用
+
+### BootStrap 响应式开发顺序
+
+1. 先做好大屏幕、中等屏幕（ PC 端）的，后面再考虑小屏幕、超小屏幕（移动端）
+2. 做一个模块时，同时把 PC端（台式电脑、笔记本电脑）、移动端（平板、手机）都做好
+
+### BootStrap 响应式开发的思路
+
+这里以先 PC 端做好，然后考虑小屏幕和超小屏幕开发顺序为例。
+
+当遇到图片大小做响应式时，通常将图片 img 的 width 属性设置为 100% ，或者准备两种不同尺寸的图片，适配不同的设备，再或若该图片在移动端不想显示，可以设置 class 属性为 `hidden-xs`  ，还可以利用媒体查询，在不同 width 下，调整字体大小和布局方式(例如：改垂直布局为水平布局)
+
+### 列表 ul 和 li 的使用
+
+通过设置 li 的 css 样式 `float: left|right`，让其浮动成水平布局
+
+应用场景：制作图片新闻图片
+
+### 浮动问题
+
+
+
+
 

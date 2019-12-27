@@ -631,7 +631,7 @@ spring.boot.admin.url: http://localhost:8080
 management.security.enabled: false
 ```
 
-[参考](http://codecentric.github.io/spring-boot-admin/1.5.7/)
+http://codecentric.github.io/spring-boot-admin/1.5.7/
 
 ![](http://img.zwer.xyz/blog/20190805174251.png)
 
@@ -1339,7 +1339,7 @@ public class Sender {
 	public void sendMsg(String msg) {
 		/**
 		 * 第一个参数表示 交换器的名称
-		 * 第二个参数表示  路由键
+		 * 第二个参数表示  路由键，不能写 null，否则就进入黑洞队列中
 		 * 第三个参数表示 消息，将要发送的消息
 		 */
 		this.rabbiteTemplate.convertAndSend(exchange,"",msg);
@@ -2066,7 +2066,7 @@ public class UserServiceImpl implements UserService{
 		//请求类型
 		ParameterizedTypeReference<List<User>> type = new  ParameterizedTypeReference<List<User>>() {};
 		//RequestEntity 封装了请求实体
-		ResponseEntity<List<User>> entity = rt.exchange(sb.toString(),HttpMethod.GET,null,type);
+		ResponseEntity<List<User>> entity = 	rt.exchange(sb.toString(),HttpMethod.GET,null,type);
 		List<User> userList = entity.getBody();
 		return userList;
 	}

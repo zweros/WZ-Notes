@@ -3,9 +3,7 @@ title: 20190801 Spring Boot
 date: 2019-08-01
 ---
 
-# Spring Boot #
-
-![](http://img.zwer.xyz/blog/20190802165421.png)
+[TOC]
 
 
 
@@ -63,7 +61,7 @@ Spring  Boot 2.0 一下 ，使用  JDK  1.7
 </project>
 ```
 
-#### **SpringBoot 启动器** ####
+#### SpringBoot 启动器 ####
 
 > 一些 jar 的集合，SpringBoot 共提供了 44 中 jar 集合
 
@@ -73,7 +71,7 @@ Spring  Boot 2.0 一下 ，使用  JDK  1.7
 | spring-boot-starter-jdbc  | 支持 spring 以 jdbc 方式操作数据库的 jar 包的集合        |
 | spring-boot-starter-redis | 支持 redis 键值存储的数据库操                            |
 
-#### **SpringBoot 启动类** ####
+#### SpringBoot 启动类 ####
 
 ```java
 package com.szxy.controller;
@@ -97,9 +95,15 @@ public class App {
 }
 ```
 
+#### SpringBoot  自动配置的位置
+
+这里查看自动配置的信息
+
+![](http://img.zwer.xyz/blog/20191127093059.png)
+
 ## SpringBoot 整合 Servlet ##
 
-### 1 通过注册扫描完成 Servelt 的注册 ###
+###  通过注册扫描完成 Servelt 的注册 ###
 
 - FirstServlet .java
 
@@ -138,7 +142,7 @@ public class App {
 
 
 
-### 2 通过方法完成Servlet 的注册 ###
+### 通过方法完成Servlet 的注册 ###
 
 - SecondServlet.java
 
@@ -185,7 +189,7 @@ public class App2 {
 
 ## SpringBoot 整合 Filter ##
 
-### 1 通过注册扫描完成 Filter 注册 ###
+### 通过注册扫描完成 Filter 注册 ###
 
 - FirstFilter.java
 
@@ -232,7 +236,7 @@ public class App {
 
 ```
 
-### 2 通过方法完成 Filter 注册 ###
+### 通过方法完成 Filter 注册 ###
 
 - SecondFilter.java
 
@@ -293,7 +297,7 @@ public class App2 {
 
 ## SpringBoot 整合 Listener  ##
 
-### 1  通过注解完成 Listener 注册 ###
+### 通过注解完成 Listener 注册 ###
 
 - FirstListener.java:
 
@@ -334,7 +338,7 @@ public class App {
 }
 ```
 
-### 2 通过方法完成 listener 注册 ###
+### 通过方法完成 listener 注册 ###
 
 - SecondListener.java 
 
@@ -386,7 +390,7 @@ public class App2 {
 
 ## SpringBoot 访问静态资源 ##
 
-#### 1 SpringBoot 从 classpath:static 目录下访问静态资源 ####
+####  classpath:static 目录访问静态资源 ####
 
 > 注意：static 目录名称不能修改
 
@@ -394,7 +398,7 @@ public class App2 {
 
 
 
-#### 2  ServletContext 根目录下 ####
+####  ServletContext 根目录下 ####
 
 > 在 src/main/webapp 目录，注意 webapp 目录不能修改
 
@@ -570,7 +574,7 @@ public class App {
 }
 ```
 
-## 小总结 ##
+## SpringBoot 注释总结 ##
 
 - 关于注解
 
@@ -699,11 +703,11 @@ spring.mvc.view.suffix=.jsp
 
 ### Thymeleaf 的基本使用 ###
 
-##### Thymeleaf 的特点 #####
+**Thymeleaf 的特点**
 
 > Thymeleaf 是通过它特定语法对 html 的标记做渲染
 
-##### Thymeleaf 的使用 #####
+**Thymeleaf 的使用**
 
 Thymeleaf 遵守严谨的 HTML 语法
 
@@ -713,7 +717,7 @@ Thymeleaf 遵守严谨的 HTML 语法
 <span th:text="${msg}"></span>
 ```
 
-##### 出现异常 #####
+**出现异常**
 
 ![](http://img.zwer.xyz/blog/20190801201753.png)
 
@@ -727,9 +731,7 @@ Thymeleaf 遵守严谨的 HTML 语法
 </thymeleaf-layout-dialect.version>
 ```
 
-### Thymeleaf 语法详解 ###
-
-#### 变量输出与字符串操作 ####
+### 变量输出与字符串操作
 
 Thymeleaf 内置对象
 
@@ -754,7 +756,7 @@ Thymeleaf 内置对象
 | $(#strings.toUpperCase(msg))                                 | 将英文单词从小写变为大写                                     |
 | $(#strings.toLowerCase(mgs))                                 | 将英文单词从大写变为小写                                     |
 
-#### 日期格式化处理 ####
+### 日期格式化处理
 
 | 标记                                                         | 作用                               |
 | ------------------------------------------------------------ | ---------------------------------- |
@@ -810,7 +812,7 @@ Thymeleaf 内置对象
 </html>
 ```
 
-#### 条件判断 ####
+### 条件判断
 
 | 标记                    | 作用    |
 | ----------------------- | ------- |
@@ -835,7 +837,7 @@ Thymeleaf 内置对象
 	</span>
 ```
 
-#### 迭代遍历 ####
+### 迭代遍历
 
 > th:each
 
@@ -913,7 +915,7 @@ Thymeleaf 内置对象
 
 ​	![](http://img.zwer.xyz/blog/20190802110131.png)
 
-#### 域对象操作 ####
+### 域对象操作
 
 ```html
 <h2>获取作用域中数据</h2>
@@ -936,7 +938,7 @@ servletContext:<span th:text="${application.context}"></span>
 <hr/>
 ```
 
-#### URL 表达式 ####
+### URL 表达式
 
 `@{URI}`
 
@@ -949,19 +951,273 @@ servletContext:<span th:text="${application.context}"></span>
 | `<a th:href="@{/users/deleteUser/{id}(id=${user.userid})}">					删除</a>` | 相对路径传参数—Restful 风格  |
 
 ```html
-	<h2> URL  表达式</h2>
-	<img alt="图片" src="img/1.jpg" width="200px" height="100px"/>
-	<img alt="图片" th:src="@{img/1.jpg}" width="200px" height="100px"/>
-	<hr/>
-	<a href="http://www.baidu.com">百度一下</a>&nbsp;&nbsp;
-	<a th:href="@{http://www.baidu.com}">百度一下</a>
-	<hr/>
-	<a href="/show">show</a>&nbsp;&nbsp;
-	<a th:href="@{/show}">show2</a>
-	<hr/>
-	<a th:href="@{/show(id=1,name=zhangsan)}">相对路径传参</a>&nbsp;&nbsp;
-	<a th:href="@{/show/1/zhangsan}">Restful 风格传参</a>
+<h2> URL  表达式</h2>
+<img alt="图片" src="img/1.jpg" width="200px" height="100px"/>
+<img alt="图片" th:src="@{img/1.jpg}" width="200px" height="100px"/>
+<hr/>
+<a href="http://www.baidu.com">百度一下</a>&nbsp;&nbsp;
+<a th:href="@{http://www.baidu.com}">百度一下</a>
+<hr/>
+<a href="/show">show</a>&nbsp;&nbsp;
+<a th:href="@{/show}">show2</a>
+<hr/>
+<a th:href="@{/show(id=1,name=zhangsan)}">相对路径传参</a>&nbsp;&nbsp;
+<a th:href="@{/show/1/zhangsan}">Restful 风格传参</a>
+
+<!-- Restful 风格传参 -->
+<a th:href="@{'/user/preUpdateUser/'+${u.userid}}">更新</a> 
+<a th:href="@{'/user/deleteUser/'+${u.userid}}">删除</a>
+
+<!-- 相对路径传参 -->
+<a th:href="@{/user/preUpdateUser(userid=${u.userid})}">更新</a>
+<a th:href="@{/user/deleteUser(userid=${u.userid})}">删除</a>
 ```
+
+## Spring boot 整合thymleaf 常用配置 
+
+```yml
+spring: 
+  thymeleaf:
+    prefix: classpath:/templates/ # thymeleaf 视图解析器后缀
+    suffix: .html  # thymleaf 视图解析器前缀
+    mode: HTML  #配置视图模板类型，如果视图是 HTML5 需要配置
+    encoding: utf-8
+    cache: false
+    servlet: 
+      content-type: text/html #响应类型
+
+```
+
+## SpringBoot 整合 JDBC 
+
+### 创建 SpringBoot 整合 JDBC 项目 Demo
+
+创建 Maven 项目，并修改 pom.xml 文件，增加  SpringBoot 与 web、thymeleaf 、JDBC 启动器坐标以及 MySQL 数据库驱动
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.6.RELEASE</version>
+	</parent>
+
+	<groupId>com.szxy</groupId>
+	<artifactId>jdbc_Demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<!-- SpringBoot-web 启动类坐标 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- thymeleaf 启动器坐标 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- SpringBoot 整合 jdbc 启动器坐标 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- MySQL 数据库驱动 -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+		<!-- Druid 数据库连接池依赖 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.11</version>
+		</dependency>
+	</dependencies>
+	<build />
+</project>
+```
+
+### 通过 @PropertySource 加载配置信息
+
+通过 Spring 框架中 @PropertySource 注解，加载指定的配置文件信息
+
+- **jdbc.properties 自定义 jdbc 配置文件信息**
+
+  ```properties
+  jdbc.driverClassName=com.mysql.jdbc.Driver
+  jdbc.url=jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+  jdbc.username=root
+  jdbc.password=root
+  ```
+
+- **JDBCConfiguration.java**是JDBC 配置类，加载配置 JDBC 自定义配置文件信息，并获取 DataSource 对象
+
+  ```java
+  @Configuration
+  @PropertySource("classpath:/jdbc.properties") // 加载指定的 properties 文件
+  public class JDBCConfiguration {
+  	
+  	@Value("${jdbc.driverClassName}")
+  	private String driverClassName;
+  	@Value("${jdbc.url}")
+  	private String url;
+  	@Value("${jdbc.username}")
+  	private String username;
+  	@Value("${jdbc.password}")
+  	private String password;
+  	
+  	@Bean
+  	public DataSource getDruidDataSource() {
+  		DruidDataSource dataSource = new DruidDataSource();
+  		dataSource.setDriverClassName(this.driverClassName);
+  		dataSource.setUrl(this.url);
+  		dataSource.setUsername(this.username);
+  		dataSource.setPassword(this.password);
+  		return dataSource;
+  	}
+  	
+  }
+  ```
+
+### 通过 @ConfigurationProperties  加载配置信息
+
+注意： @ConfigurationProperties 注解由 SpringBoot 提供，且只能加载 SpringBoot 的配置文件信息（`application[.properties][.yml]`）
+
+- **application.yml** （SpringBoot 配置文件）
+
+  ```yml
+  # 自定义 jdbc 配置文件信息，由指定的自定义配置类 JdbcProperties 加载，解析
+  jdbc:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+  ```
+
+- **JdbcProperties.java**  
+
+  将 Jdbc 配置信息单独抽取成一个配置类，可以达到  jdbc 配置信息复用的目的，减少多余代码的书写。
+
+  另外这里使用到 `@Configuration 注解 和 @ConfigurationProperties(prefix=)` 注解， `@ConfigurationProperties(prefix=)`  表示通过加载 SpringBoot 配置信息，解析指定前缀 prefix 的配置信息，然后通过 JdbcProperties 中 setter 方法注入到 JdbcProperties 对象中
+
+  ```java
+  /**
+   * @author zwer
+   * JDBC 自定义配置类
+   * 
+   */
+  @Configuration
+  @ConfigurationProperties(prefix="jdbc")  // 加载 jdbc 为前缀的配置信息
+  public class JdbcProperties {
+  	private String driverClassName;
+  	private String url;
+  	private String username;
+  	private String password;
+  
+  	// 这里省略  setter 和 getter 方法
+  }
+  ```
+
+- **JDBCConfiguration.java** 
+
+  1. 使用  JdbcProperties 对象，需要在类上添加    @EnableConfigurationProperties  注解
+
+  2. 这里有三种方式注入 JdbcPropreties 对象
+
+     第一种：通过 @Autowired  注解
+
+     第二种：通过 构造方法注入
+  
+     第三种： 通过方法参数注入 （最简便）
+  
+  ```java
+    @Configuration
+    @EnableConfigurationProperties
+    public class JDBCConfiguration {
+    	
+    	// 1.  @Autowried 注入
+    	// @Autowired
+    	// private JdbcProperties jdbcProperties; 
+    	
+    	/**
+    	  * 2.  构造注入
+    	 * @param jdbcProperties
+    	 */
+    //	public JDBCConfiguration(JdbcProperties jdbcProperties) {
+    //		this.jdbcProperties = jdbcProperties;
+    //	}
+    	
+    	/**
+    	 *	3. 通过方法参数注入
+    	 *获取数据源  DataSource 对象
+    	 *   
+    	 * @return DataSource 
+    	 */
+    	@Bean
+    	public DataSource getDruidDataSource(JdbcProperties jdbcProperties) {
+    		DruidDataSource dataSource = new DruidDataSource();
+    		dataSource.setDriverClassName(jdbcProperties.getDriverClassName());
+    		dataSource.setUrl(jdbcProperties.getUrl());
+    		dataSource.setUsername(jdbcProperties.getUsername());
+    		dataSource.setPassword(jdbcProperties.getPassword());
+    		return dataSource;
+    	}
+    	
+    }
+    
+  ```
+  
+###  @ConfigurationProperties   注解优雅使用方式
+
+- application.yml
+
+  ```yml
+  # 自定义 jdbc 配置文件信息，由指定的自定义配置类 JdbcProperties 加载，解析
+  jdbc:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+  ```
+
+- JDBCConfiguration.java  
+
+  ```java
+  @Configuration
+  public class JDBCConfiguration {
+  	@Bean
+  	@ConfigurationProperties(prefix="jdbc") // 优雅注解
+  	public DataSource getDruidDataSource() {
+  		DruidDataSource dataSource = new DruidDataSource();
+  		return dataSource;
+  	}
+  }
+  ```
+
+### 通过 SpringBoot 配置文件配置数据源 ###
+
+SpringBoot 2.x 中 springboot-starter-jdbc 采用 com.zaxxer.hikari.HikariDataSource 作为默认数据源 
+当然也可以指定第三方数据源 Druid 
+
+```java
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+```
+
+
+
+
+
 
 ## SpringBoot 整合 Mybatis  ##
 
@@ -1079,14 +1335,14 @@ public class App {
 }
 ```
 
-#### 出现的异常 ####
+**出现的异常**
 
 ```java
 //异常一
-SpringBoot整合Mybatis出现的错误：At least one base package must be specified
+SpringBoot 整合 Mybatis 出现的错误：At least one base package must be specified
 
 /****
-	由于 ：在主函数上加上对mapper层的扫描MapperScan注解
+	由于 ：在主函数上没有加上对mapper层的扫描MapperScan注解
 	@MapperScan("com.szxy.mapper") 
 ****/
 
@@ -1114,9 +1370,8 @@ Consider defining a bean of type 'com.szxy.service.UsersService' in your configu
 
 ### SpringBoot 对表单做数据校验 ###
 
-SpringBoot 采用 Hibernate-validate 校验框架。
-
-#### 步骤 ####
+> SpringBoot 采用 Hibernate-validate 校验框架。 效率很差，通常开发时不建议使用
+>
 
 - 在实体类上添加校验规则（在成员属性上添加 @NotBlack 注解）
 
@@ -1176,10 +1431,8 @@ There was an unexpected error (type=Internal Server Error, status=500).
 
 Error during execution of processor 'org.thymeleaf.spring4.processor.SpringErrorsTagProcessor' 
 (template: "add" - line 9, col 46)
-```
-
-```java
-/**
+    
+	/**
 	 * 解决异常的方式。可以在跳转页面的方法中注入一个 Uesr 对象。 
 	 * 注意：由于 springmvc 会将该对象放入到 Model 中传递。
 	 * key 的名称会使用 该对象的驼峰式的命名规则来作为 key。 
@@ -1191,13 +1444,13 @@ Error during execution of processor 'org.thymeleaf.spring4.processor.SpringError
 	 * @param user  
 	 * @return
 	 */
-	@RequestMapping("/user/add")
-	public String Add(User user){
-		return "add";
-	}
+    @RequestMapping("/user/add")
+    public String Add(User user){
+    return "add";
+}
 ```
 
-#### 总结 ####
+### 表单数据校验注解总结 ###
 
 | 注解            | 作用                                                         |
 | --------------- | ------------------------------------------------------------ |
@@ -1218,9 +1471,7 @@ Error during execution of processor 'org.thymeleaf.spring4.processor.SpringError
 
 #### 自定义错误页面 ####
 
-SpringBoot 默认处理异常的机制，SpringBoot 默认提供了一套处理异常的机制。一旦程序中除了异常，便向 /errror 的 url 发送请求。在 SpringBoot 中提供了一个叫 BasicExceptionController 来处理 /error 请求，然后跳转到默认显示异常的页面来展示异常信息
-
-
+SpringBoot 默认处理异常的机制，SpringBoot 默认提供了一套处理异常的机制。一旦程序中除了异常，便向 /errror 的 url 发送请求。在 SpringBoot 中提供了一个叫 BasicExceptionController 来处理 /error 请求，然后跳转到默认显示异常的页面来展示异常信息。
 
 如果我们需要将所有的异常统一跳转到自定义的错误页面，需要将 src/main/resources/templates 目录下创建 error.html 页面，注意：名称必叫 error。
 
@@ -1239,7 +1490,7 @@ SpringBoot 默认处理异常的机制，SpringBoot 默认提供了一套处理�
 </html>
 ```
 
-#### @ExceptionHandle 注解处理异常 ####
+#### @ExceptionHandler 注解处理异常 ####
 
 > 只能处理当前 Controller 类中的特定异常，不能处理其他 Controller 类中异常
 
@@ -1261,7 +1512,7 @@ public ModelAndView argumentHandle(Exception e){
 }
 ```
 
-#### @ControllerAdvier+@ExceptionHandle   ####
+#### @ControllerAdvier+@ExceptionHandler   ####
 
 > 好处：可以处理全局 Controller 类的异常
 
@@ -1515,9 +1766,24 @@ public class UserServiceImplTest {
 
   当 Java 代码修改保存后，会自动进行重新部署。当页面修改保存后，也可以立即看到修过后的效果
 
+### DevTools 在 IDEA 中的配置
+
+1. 开启 IDEA 中自动编译功能
+
+![](http://img.zwer.xyz/blog/20191130210716.png)
+
+2. 设置 idea 中 Registry
+
+通过 ctrl+Shirt+Alt + /， 打开
+
+![](http://img.zwer.xyz/blog/20191130212343.png)
+
+
+
+
 ## SpringBoot 整合 Spring Data JPA  ##
 
-#### 搭建项目环境 ####
+### 搭建项目环境 ###
 
 - 修改 pom.xml 文件
 
@@ -1656,7 +1922,7 @@ public class UsersDaoTest {
 
 ### Spring JPA 接口的使用 ###
 
-#### Repository 接口的使用 ####
+**Repository 接口的使用**
 
 1. **方法名称命名查询**
 
@@ -1704,7 +1970,7 @@ public interface UsersDaoByQuery extends Repository<Users,Integer> {
 
 ```
 
-#### CrudRepository 接口 ####
+**CrudRepository 接口**
 
 > 该接口提供了 CRUD 操作的抽象方法
 
@@ -1716,7 +1982,7 @@ public interface UsersDaoByCrud extends CrudRepository<Users, Integer> {
 
 ```
 
-#### PagingAndSortingRepository 接口 ####
+**PagingAndSortingRepository 接口**
 
 > 该接口提供了分页和排序的排序,同时继承了 CrudRepository 接口
 
@@ -1727,7 +1993,7 @@ public interface UsersDaoByPagingAndSortingResp extends PagingAndSortingReposito
 
 ```
 
-#### JpaRepository 接口 ####
+**JpaRepository 接口**
 
 > 该接口作用将返回值做适配处理
 
@@ -1744,7 +2010,7 @@ public interface UsersDao extends JpaRepository<Users,Integer> {
 
 ```
 
-#### JpaSpecificationExecutor 接口 ####
+**JpaSpecificationExecutor 接口**
 
 > 该接口中的功能多条件查询和分页操作
 >
@@ -2791,7 +3057,7 @@ public void test6(){
 
 ## Spring Boot 定时任务 ##
 
-### 1 scheduled  ###
+### scheduled  ###
 
 - 创建 Maven 的 jar 项目，修改 pom.xml 文件
 
@@ -2868,7 +3134,7 @@ public class App {
 }
 ```
 
-#### 2 @cron  表达式 ####
+###  @cron  表达式 ###
 
 > Cron 表达式是一个字符串，分为 **6** 或 7 域，每个代表一个含义
 >
@@ -2919,7 +3185,7 @@ corn 从左到右（用空格隔开）: 秒 分 小时 月份中的日期 月份
 @Scheduled(cron="0 0 1 * * *") //每天凌晨 1 点执行一次
 ```
 
-### 2 Quartz  ###
+###  Quartz  ###
 
 > **Quartz**是一个[Java](https://zh.wikipedia.org/wiki/Java)下作业控制的[开源](https://zh.wikipedia.org/wiki/开源)[框架](https://zh.wikipedia.org/wiki/軟體框架)。Quartz用来创建或简单或复杂的调度时间表，执行Java下任意数量的作业。版本1.0发布于2002年9月13日，当前版本2.2.1发布于2013年9月24日。
 >
@@ -2939,7 +3205,7 @@ Trigger-触发器-你什么时候去做？
 
 Schedulr-任务调度-你需要什么时候去做什么事？
 
-##### 单独 Quartz  #####
+Quartz  单独项目 Demo 
 
 - 创建 Maven 项目，修改 pom.xml 文件
 

@@ -499,10 +499,12 @@ hadoop jar hadoop-mapreduce-examples-2.6.5.jar wordcount /user/root/test.txt /da
 ```shell
 start-all.sh  # 启动 HDFS  和 YARN  
 # 手动在节点中启动 ResourceManager 
-hadoop-daemon.sh start resourcemanager 
+yarn-daemon.sh start resourcemanager 
 start—dfs.sh   # 启动 HDFS 
 start-yarn.sh  # 启动 YARN 资源管理
 
-hadoop-daemon.sh [start][stop] 角色名称 [namenode][datanode][resourcemanager] ...
+hadoop-daemon.sh [start|stop]  [namenode | atanode]
+
+yarn-daemon.sh [start|stop]  [resourcemanager | nodemanager] 
 ```
 

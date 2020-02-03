@@ -48,7 +48,7 @@ Reduce 的数量由人来决定，根据前面的组的推导
 
    Map 端会处理输入数据并产生中间结果，这个中间结果会写到本地磁盘，而不是 HDFS。每个Map的输出会先写到内存缓冲区中，当写入的数据达到设定的阈值时，系统将会启动一个线程将缓冲区的数据写到磁盘，这个过程叫做 spill。
 
-   在 spill 写入之前，会先进行二次排序，首先根据数据所属的 partition 进行排序，然后每个 partition 中的数据再按 key 来排序。partition 的目是将记录划分到不同的 Reducer上去，以期望能够达到负载均衡，以后的Reducer就会根据 partition 来读取自己对应的数据。接着运行combiner(如果设置了的话)，combiner的本质也是一个Reducer，其目的是对将要写入到磁盘上的文件先进行一次处理，这样，写入到磁盘的数据量就会减少。最后将数据写到本地磁盘产生spill文件(spill文件保存在{mapred.local.dir}指定的目录中，Map任务结束后就会被删除)。
+   在 spill 写入之前，会先进行二次排序，首先根据数据所属的 partition 进行排序，然后每个 partition 中的数据再按 key 来排序。partition 的目是将记录划分到不同的 Reducer上去，以期望能够达到负载均衡，以后的Reducer就会根据 partition 来读取自己对应的数据。接着运行combiner(如果设置了的话)，combiner的本质也是一个Reducer，其目的是对将要写入到磁盘上的文件先进行一次处 理，这样，写入到磁盘的数据量就会减少。最后将数据写到本地磁盘产生spill文件(spill文件保存在{mapred.local.dir}指定的目录中，Map任务结束后就会被删除)。
 
    最后，每个Map任务可能产生多个spill文件，在每个Map任务完成前，会通过多路归并算法将这些spill文件归并成一个文件。至此，Map的shuffle过程就结束了。
 
@@ -114,7 +114,7 @@ Reduce 的数量由人来决定，根据前面的组的推导
 
 ## 搭建 yarn ##
 
-### 准备 ###
+### 准备![image-20200106210743414](D:\photo\TyporaPicture\image-20200106210743414.png) ###
 
 |        | NN-1 | NN-2 | DN   | ZK   | ZKFC | JNN  | RM   | NM   |
 | ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |

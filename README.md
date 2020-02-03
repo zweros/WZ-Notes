@@ -5,7 +5,6 @@
 ## 大数据篇
 
 - [20190902 大数据入门](doc/20190902 大数据入门.md)
-
 - [20190921 Linux 基础](doc/20190921 Linux 基础.md)
 - [20190924  TCP keepalived Nginx](doc/20190924  TCP keepalived Nginx.md)
 - [20190928 Hadoop 分布式系统 HDFS](doc/20190928 Hadoop 分布式系统 HDFS.md)
@@ -152,7 +151,7 @@
 
 - [CMS 内容管理系统项目实战](doc/20190701 cms.md)
 
-- [20190820  Docker](doc/20190820  Docker .md)
+- [20190820 Docker](doc/20190820 Docker .md)
 
 - [Thymeleaf 开发总结](doc/Thymeleaf 开发总结.md)
 

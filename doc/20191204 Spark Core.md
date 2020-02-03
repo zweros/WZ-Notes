@@ -5,8 +5,6 @@ date: 2019-12-04
 
 [TOC]
 
-
-
 ## Spark 简介
 
 - Apache Spark™ is a fast and general engine for large-scale data processing.
@@ -300,6 +298,10 @@ Spark 是内存计算，并且使用 DAG（有向无环图）优化 Job 任务�
 - **local**
 
   本地运行模式，多用于测试在 Eclipse、 IDEA 环境下使用
+
+  local[k] 表示在本地模拟 N 个 Work 进程
+
+  
 
 - **standalone**
 
@@ -1417,11 +1419,7 @@ Spark 中资源指的是 core 和 memory
 - **--driver-cores**
   Driver程序的使用core个数（默认为1），仅限于Spark standalone模式
   Spark standalone or Mesos with cluster deploy mode only:
-- --supervise
-  失败后是否重启Driver，仅限于Spark  alone或者Mesos模式
-  Spark standalone and Mesos only:
-- --total-executor-cores
-  executor使用的总核数，仅限于SparkStandalone、Spark on Mesos模式
+- 
 
 ### Spark standalone and YARN only:
 
@@ -1767,6 +1765,10 @@ Executor 端执行的代码是指 SparkApplication 中 RDD 使用的算子中回
 
 ![](http://img.zwer.xyz/blog/20191210205743.png)
 
+![](https://user-gold-cdn.xitu.io/2019/12/30/16f54b508acbb11a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+
+
+
 ### 广播变量 demo 
 
 ```scala
@@ -1803,6 +1805,8 @@ object BroadcastVariableDemo {
 }
 
 ```
+
+![](****)
 
 ## 累加器
 

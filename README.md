@@ -124,8 +124,6 @@
 - [20190727 Servlet-Tomcat-Spring-SpringMVC-Mybatis 源码分析](doc/20190727 Servlet-Tomcat-Spring-SpringMVC-Mybatis 源码分析.md)
 - [20190805 JVM 调优](doc/20190805 JVM 调优.md)
 
-- [我的面经](doc/20190801我的面经.md)
-- [面试笔记](doc/面试笔记.md)
 
 
 
